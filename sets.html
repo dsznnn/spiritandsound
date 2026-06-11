@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spirit & Sound — Sets</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    line-height:1.6;
+    letter-spacing:0.01em;
+}
+
+a{
+    color:#000;
+    text-decoration:none;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+.wrapper{
+    max-width:1600px;
+    margin:0 auto;
+}
+
+/* ---------- NAV ---------- */
+
+nav{
+    border-bottom:1px solid #000;
+    padding:18px 24px;
+}
+
+.nav-inner{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+}
+
+.logo{
+    font-size:14px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+}
+
+.nav-links{
+    display:flex;
+    gap:24px;
+}
+
+.nav-links a:hover{
+    text-decoration:underline;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+    padding:120px 24px;
+    border-bottom:1px solid #000;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+}
+
+.hero-title{
+    font-size:32px;
+    font-weight:normal;
+    line-height:1.1;
+}
+
+.hero-text{
+    max-width:520px;
+}
+
+/* ---------- INFO ---------- */
+
+.info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-bottom:1px solid #000;
+}
+
+.info-column{
+    padding:40px 24px;
+}
+
+.info-column:first-child{
+    border-right:1px solid #000;
+}
+
+.section-label{
+    text-transform:uppercase;
+    font-size:11px;
+    letter-spacing:0.08em;
+    margin-bottom:20px;
+}
+
+/* ---------- SETS ---------- */
+
+.sets-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+}
+
+.set-card{
+    border-right:1px solid #000;
+    border-bottom:1px solid #000;
+    min-height:500px;
+    display:flex;
+    flex-direction:column;
+}
+
+.set-card:nth-child(3n){
+    border-right:none;
+}
+
+.set-image{
+    aspect-ratio:1/1;
+    border-bottom:1px solid #000;
+    overflow:hidden;
+}
+
+.set-content{
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    flex:1;
+}
+
+.set-number{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+}
+
+.set-title{
+    font-size:18px;
+    line-height:1.3;
+}
+
+.set-meta{
+    font-size:12px;
+    color:#444;
+}
+
+.listen{
+    margin-top:auto;
+    display:inline-block;
+    border-top:1px solid #000;
+    padding-top:12px;
+}
+
+/* ---------- ARCHIVE ---------- */
+
+.archive{
+    padding:60px 24px;
+    border-bottom:1px solid #000;
+}
+
+.archive-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+}
+
+.archive-item{
+    padding:14px 0;
+    border-bottom:1px solid #000;
+}
+
+.archive-item span{
+    float:right;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+    padding:24px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.footer-right{
+    text-align:right;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:900px){
+
+.hero-grid,
+.info,
+.footer-grid{
+    grid-template-columns:1fr;
+}
+
+.info-column:first-child{
+    border-right:none;
+    border-bottom:1px solid #000;
+}
+
+.sets-grid{
+    grid-template-columns:1fr;
+}
+
+.set-card{
+    border-right:none;
+}
+
+.archive-grid{
+    grid-template-columns:1fr;
+}
+
+.footer-right{
+    text-align:left;
+    margin-top:20px;
+}
+
+.nav-inner{
+    grid-template-columns:1fr;
+    gap:20px;
+}
+
+.nav-links{
+    flex-wrap:wrap;
+}
+
+.hero{
+    padding:80px 24px;
+}
+
+.hero-title{
+    font-size:24px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">Spirit & Sound</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+
+    <div class="hero-grid">
+
+        <div>
+            <h1 class="hero-title">
+                Sets
+            </h1>
+        </div>
+
+        <div class="hero-text">
+            A growing archive of recorded sets 
+            connected to the Spirit & Sound
+            community.
+
+            <br><br>
+
+            Each recording documents a particular
+            place, moment or gathering.
+        </div>
+
+    </div>
+
+</section>
+
+<section class="info">
+
+    <div class="info-column">
+        <div class="section-label">
+            About
+        </div>
+
+        Spirit & Sound documents music culture
+        through recordings, events and community
+        contributions. The sets archive serves as
+        an evolving record of sounds shared across
+        different spaces and occasions.
+    </div>
+
+    <div class="info-column">
+        <div class="section-label">
+            Archive Status
+        </div>
+        Updated continuously.<br>
+        Johannesburg, South Africa.
+    </div>
+
+</section>
+
+<section class="sets-grid">
+
+    <article class="set-card">
+
+        <div class="set-image">
+            <img src="https://chatgpt.com/backend-api/estuary/content?id=file_00000000389c71f4a462edaf1cf98d72&cp=pri&ma=90000&ts=20614&p=igh&cid=1&sig=eec2e685297d1486ed8e99aa0db6ef6e003297b0d08a3595eca0b5762beb0017&v=0" alt="">
+        </div>
+
+        <div class="set-content">
+
+            <div class="set-number">
+                Set 001
+            </div>
+
+            <div class="set-title">
+                SENX SNEAKER DISTRICT
+            </div>
+
+            <div class="set-meta">
+                Johannesburg • 1h 1m 26s
+            </div>
+
+            <a href="https://youtu.be/dngNSzai97g?si=9J26x0DYhj4GhFuH" class="listen">
+                Listen
+            </a>
+
+        </div>
+
+    </article>
+
+    <div style="font-size: 80px; font-weight: bold; text-align: center; padding: 100px 20px; color: #333;">
+        COMING SOON
+    </div>
+
+</section>
+
+<section class="archive">
+
+    <div class="section-label">
+        Archive Index
+    </div>
+
+    <div class="archive-grid">
+
+        <div class="archive-item">Set 001 <span>2026</span></div>
+        <div class="archive-item">Set 002 <span>2026</span></div>
+        <div class="archive-item">Set 003 <span>2026</span></div>
+        <div class="archive-item">Set 004 <span>2026</span></div>
+        <div class="archive-item">Set 005 <span>2026</span></div>
+        <div class="archive-item">Set 006 <span>2026</span></div>
+        <div class="archive-item">Set 007 <span>2025</span></div>
+        <div class="archive-item">Set 008 <span>2025</span></div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+            Spirit & Sound<br>
+            Independent Music Archive
+        </div>
+
+        <div class="footer-right">
+            Johannesburg, South Africa
+        </div>
+
+    </div>
+
+</footer>
+
+</div>
+
+<script>
+
+// intentionally minimal
+
+document.querySelectorAll('.set-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.background = '#fafafa';
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.background = '#fff';
+    });
+});
+
+</script>
+
+</body>
+</html>

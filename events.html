@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spirit & Sound | Events</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 30px;
+    border-bottom:1px solid #000;
+}
+
+.logo{
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.nav{
+    display:flex;
+    gap:24px;
+}
+
+.nav a{
+    color:#000;
+    text-decoration:none;
+}
+
+.nav a:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    padding:80px 30px;
+    border-bottom:1px solid #000;
+}
+
+.intro h1{
+    font-size:56px;
+    font-weight:400;
+    margin-bottom:20px;
+}
+
+.intro p{
+    max-width:700px;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.events-layout{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    min-height:800px;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.event-list{
+    border-right:1px solid #000;
+}
+
+.event-item{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:18px 24px;
+    border-bottom:1px solid #000;
+    cursor:pointer;
+}
+
+.event-item:hover{
+    background:#f7f7f7;
+}
+
+.event-item.active{
+    background:#f2f2f2;
+}
+
+.event-name{
+    font-weight:400;
+}
+
+.event-date-small{
+    color:#666;
+}
+
+/* =========================
+   DETAIL
+========================= */
+
+.event-detail{
+    display:grid;
+    grid-template-columns:520px 1fr;
+}
+
+/* =========================
+   INSTAGRAM
+========================= */
+
+.event-media{
+    border-right:1px solid #000;
+    padding:24px;
+}
+
+.embed-wrapper{
+    width:100%;
+}
+
+.embed-wrapper iframe{
+    width:100%;
+    height:720px;
+    border:none;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.event-content{
+    padding:50px;
+}
+
+.event-content h2{
+    font-size:34px;
+    font-weight:400;
+    margin-bottom:24px;
+}
+
+.event-description{
+    max-width:650px;
+}
+
+.metadata{
+    margin-top:60px;
+}
+
+.meta-row{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    padding:14px 0;
+    border-top:1px solid #000;
+}
+
+.meta-label{
+    color:#666;
+}
+
+.learn-more{
+    display:inline-block;
+    margin-top:40px;
+    color:#000;
+    text-decoration:none;
+    border-bottom:1px solid #000;
+}
+
+.learn-more:hover{
+    opacity:.6;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid #000;
+    padding:30px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1100px){
+
+    .event-detail{
+        grid-template-columns:1fr;
+    }
+
+    .event-media{
+        border-right:none;
+        border-bottom:1px solid #000;
+    }
+
+}
+
+@media(max-width:850px){
+
+    .events-layout{
+        grid-template-columns:1fr;
+    }
+
+    .event-list{
+        border-right:none;
+        border-bottom:1px solid #000;
+    }
+
+    .intro h1{
+        font-size:42px;
+    }
+
+    .event-content{
+        padding:30px;
+    }
+
+    .embed-wrapper iframe{
+        height:650px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="site-header">
+
+    <div class="logo">
+        SPIRIT & SOUND
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+    </nav>
+
+</header>
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="intro">
+
+    <h1>Events</h1>
+
+    <p>
+        A selection of events, gatherings and cultural moments
+        documented through Spirit & Sound. A growing archive of
+        artists, collectives, venues and communities shaping the
+        contemporary music landscape.
+    </p>
+
+</section>
+
+<!-- =========================
+     EVENTS
+========================= -->
+
+<section class="events-layout">
+
+    <!-- LEFT -->
+
+    <aside class="event-list">
+
+        <div class="event-item active"
+
+            data-title="SENX B2B MARQ"
+            data-date="21 June 2026"
+            data-venue="Johannesburg"
+            data-time="18:00"
+            data-description="Presented by XYZ Collective. An evening programme focused on Afro House, Deep House and contemporary electronic music."
+            data-embed="https://www.instagram.com/p/DZUmQxagMYJ/embed">
+
+            <span class="event-name">SENX B2B MARQ</span>
+            <span class="event-date-small">21.06.26</span>
+
+        </div>
+
+        <div class="event-item"
+
+            data-title="Echo Nights"
+            data-date="12 July 2026"
+            data-venue="Pretoria"
+            data-time="19:00"
+            data-description="A celebration of local artists, underground sounds and independent culture."
+            data-embed="https://www.instagram.com/p/CODE2/embed">
+
+            <span class="event-name">Echo Nights</span>
+            <span class="event-date-small">12.07.26</span>
+
+        </div>
+
+        <div class="event-item"
+
+            data-title="The Gathering"
+            data-date="2 August 2026"
+            data-venue="Cape Town"
+            data-time="16:00"
+            data-description="A daytime event exploring community, music and shared experiences."
+            data-embed="https://www.instagram.com/p/CODE3/embed">
+
+            <span class="event-name">The Gathering</span>
+            <span class="event-date-small">02.08.26</span>
+
+        </div>
+
+    </aside>
+
+    <!-- RIGHT -->
+
+    <article class="event-detail">
+
+        <div class="event-media">
+
+            <div class="embed-wrapper">
+
+                <iframe
+                    id="event-embed"
+                    src="https://www.instagram.com/p/DZUmQxagMYJ/embed"
+                    loading="lazy">
+                </iframe>
+
+            </div>
+
+        </div>
+
+        <div class="event-content">
+
+            <h2 id="event-title">
+                SENX B2B MARQ
+            </h2>
+
+            <p id="event-description" class="event-description">
+                Presented by XYZ Collective. An evening programme
+                focused on Afro House, Deep House and contemporary
+                electronic music.
+            </p>
+
+            <div class="metadata">
+
+                <div class="meta-row">
+                    <span class="meta-label">Date</span>
+                    <span id="event-date">21 June 2026</span>
+                </div>
+
+                <div class="meta-row">
+                    <span class="meta-label">Location</span>
+                    <span id="event-venue">Johannesburg</span>
+                </div>
+
+                <div class="meta-row">
+                    <span class="meta-label">Time</span>
+                    <span id="event-time">18:00</span>
+                </div>
+
+            </div>
+
+            <a href="#" class="learn-more">
+                View Event Information
+            </a>
+
+        </div>
+
+    </article>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div>
+        Spirit & Sound
+    </div>
+
+    <div>
+        Independent music and culture archive.
+    </div>
+
+</footer>
+
+<script>
+
+const eventItems = document.querySelectorAll(".event-item");
+
+eventItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        eventItems.forEach(el =>
+            el.classList.remove("active")
+        );
+
+        item.classList.add("active");
+
+        document.getElementById("event-title").textContent =
+            item.dataset.title;
+
+        document.getElementById("event-description").textContent =
+            item.dataset.description;
+
+        document.getElementById("event-date").textContent =
+            item.dataset.date;
+
+        document.getElementById("event-venue").textContent =
+            item.dataset.venue;
+
+        document.getElementById("event-time").textContent =
+            item.dataset.time;
+
+        document.getElementById("event-embed").src =
+            item.dataset.embed;
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
