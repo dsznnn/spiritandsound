@@ -14,14 +14,25 @@
 }
 
 body{
-    background:#fff;
+    background: url("https://i.pinimg.com/originals/18/c8/ce/18c8ce1a6a0ce0525cdc476c7a6744b8.gif") center center / cover no-repeat fixed;
     color:#000;
     font-family:Arial, Helvetica, sans-serif;
     font-size:14px;
     line-height:1.5;
 }
 
+/* readability overlay */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(255,255,255,0.75);
+    z-index:0;
+}
+
 .container{
+    position:relative;
+    z-index:1;
     max-width:1400px;
     margin:auto;
     padding:30px;
@@ -124,6 +135,7 @@ footer{
 
 </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -142,9 +154,7 @@ footer{
 
 <div class="section">
 
-    <div class="label">
-        About
-    </div>
+    <div class="label">About</div>
 
     <div class="content">
         <p>
@@ -162,9 +172,7 @@ footer{
 
 <div class="section">
 
-    <div class="label">
-        Explore
-    </div>
+    <div class="label">Explore</div>
 
     <div class="content">
 
@@ -181,9 +189,7 @@ footer{
 
 <div class="section">
 
-    <div class="label">
-        Notes
-    </div>
+    <div class="label">Notes</div>
 
     <div class="content">
         <p>
@@ -195,10 +201,8 @@ footer{
 </div>
 
 <footer>
-
     <div>© 2026 Spirit & Sound</div>
     <div>Independent Platform</div>
-
 </footer>
 
 </div>
