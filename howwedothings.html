@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How To Get Involved</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --background: #ffffff;
+        --text: #000000;
+        --border: #000000;
+        --spacing: 28px;
+    }
+
+    body {
+        background: var(--background);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    img {
+        width: 100%;
+        display: block;
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 24px;
+    }
+
+    /* Navigation */
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-bottom: var(--spacing);
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 80px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .site-name {
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    /* Intro */
+
+    .intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        margin-bottom: 100px;
+    }
+
+    .intro-title {
+        font-size: 28px;
+        font-weight: normal;
+        line-height: 1.2;
+    }
+
+    .intro-text {
+        max-width: 450px;
+    }
+
+    /* Archive grid */
+
+    .archive {
+        border-top: 1px solid var(--border);
+        margin-bottom: 100px;
+    }
+
+    .archive-item {
+        border-bottom: 1px solid var(--border);
+    }
+
+    .archive-item summary {
+        list-style: none;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 120px 1fr 200px 24px;
+        align-items: center;
+        gap: 24px;
+        padding: 22px 0;
+    }
+
+    .archive-item summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .archive-item summary h3 {
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .archive-item .indicator {
+        font-size: 16px;
+        text-align: right;
+    }
+
+    .archive-item[open] .indicator::before {
+        content: "\2212"; /* minus */
+    }
+
+    .archive-item:not([open]) .indicator::before {
+        content: "+";
+    }
+
+    .archive-item .archive-body {
+        padding: 0 0 22px 0;
+    }
+
+    .meta {
+        color: #444;
+    }
+
+    /* Image placeholder */             
+
+    .image-block {
+        margin-bottom: 100px;
+        border: 1px solid var(--border);
+        height: 420px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-block span {
+        font-size: 12px;
+    }
+
+    /* Footer */
+
+    footer {
+        border-top: 1px solid var(--border);
+        padding-top: 30px;
+
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 30px;
+
+        margin-bottom: 40px;
+    }
+
+    footer h4 {
+        font-size: 12px;
+        margin-bottom: 14px;
+        font-weight: normal;
+    }
+
+    footer p,
+    footer a {
+        font-size: 13px;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    /* Mobile */
+
+    @media(max-width: 800px){
+
+        .intro{
+            grid-template-columns:1fr;
+            gap:40px;
+        }
+
+        .archive-item summary{
+            grid-template-columns:1fr 24px;
+            gap:10px;
+        }
+
+        footer{
+            grid-template-columns:1fr;
+        }
+
+        .image-block{
+            height:240px;
+        }
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <nav>
+
+        <div class="site-name">
+            Spirit And Sound
+        </div>
+
+        <div class="nav-links">
+            <a href="index">Home</a>
+        </div>
+
+    </nav>
+
+
+    <section class="intro">
+
+        <div>
+            <h1 class="intro-title">
+                Want to be involved? Here's how:
+            </h1>
+        </div>
+
+    </section>
+
+
+    <section class="archive">   
+
+        <details class="archive-item">
+
+            <summary>
+                <div class="meta">Events</div>
+            </summary>
+
+            <div class="archive-body">
+                <p>
+                    If you’re interested in performing at an S&S event, please reach out to us via Instagram DM at @spiritandsoundjhb. Include your rates and some of your previous work when you message us. 
+                </p>
+            </div>
+
+        </details>
+
+
+        <details class="archive-item">
+
+            <summary>
+                <div class="meta">Interviews</div>
+            </summary>
+
+            <div class="archive-body">
+                <p>
+                   If you’re looking to be featured in an interview with S&S, please contact us via Instagram DM at @spiritandsoundjhb. Make sure to include a short introduction about yourself and any relevant links to your previous work or projects.
+                </p>
+            </div>
+
+        </details>
+
+
+        <details class="archive-item">
+
+            <summary>
+                <div class="meta">Private Sets</div>
+            </summary>
+
+            <div class="archive-body">
+                <p>
+                    If you’re interested in booking a private set with S&S, please reach out to us via Instagram DM at @spiritandsoundjhb. Include your preferred dates, set duration, location, and your rates when you message us.
+                </p>
+            </div>
+
+        </details>
+
+         <details class="archive-item">
+
+            <summary>
+                <div class="meta">Collaborations</div>
+            </summary>
+
+            <div class="archive-body">
+                <p>
+                    If you’re interested in collaborating with S&S, please contact us via Instagram DM at @spiritandsoundjhb. Include a short introduction about yourself or your project, along with any relevant links, ideas, or previous work when you reach out.
+                </p>
+            </div>
+
+        </details>
+
+    </section>
+</div>
+</body>
+</html>
