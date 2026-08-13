@@ -1,212 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="tabicon.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spirit & Sound</title>
+    <link rel="icon" type="image/png" href="tabicon.png">
 
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <title>Spirit & Sound</title>
 
-html,
-body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{
-    background:url("https://i.pinimg.com/originals/18/c8/ce/18c8ce1a6a0ce0525cdc476c7a6744b8.gif") center center / cover no-repeat fixed;
-    color:#000;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:14px;
-    line-height:1.5;
-}
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-/* readability overlay */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:rgba(255,255,255,0.75);
-    z-index:0;
-}
+        body {
+            background: url("https://i.pinimg.com/originals/18/c8/ce/18c8ce1a6a0ce0525cdc476c7a6744b8.gif")
+                center center / cover no-repeat fixed;
 
-.container{
-    position:relative;
-    z-index:1;
-    max-width:1400px;
-    height:100vh;
-    margin:auto;
-    padding:20px 30px;
+            color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+        }
 
-    display:flex;
-    flex-direction:column;
-}
+        /* Readability overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.75);
+            z-index: 0;
+        }
 
-/* HEADER */
+        .container {
+            position: relative;
+            z-index: 1;
 
-header{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:40px;
-    text-transform:uppercase;
-    font-size:12px;
-    letter-spacing:1px;
-}
+            max-width: 1400px;
+            height: 100vh;
 
-/* HERO */
+            margin: auto;
+            padding: 20px 30px;
 
-.hero{
-    margin-bottom:50px;
-}
+            display: flex;
+            flex-direction: column;
+        }
 
-.hero h1{
-    font-size:clamp(4rem,10vw,8rem);
-    font-weight:normal;
-    line-height:.88;
-    letter-spacing:-4px;
-}
+        /* HEADER */
 
-/* SECTIONS */
+        header {
+            display: flex;
+            justify-content: space-between;
 
-.section{
-    border-top:1px solid #000;
-    padding:20px 0;
-    display:grid;
-    grid-template-columns:250px 1fr;
-    gap:40px;
-}
+            margin-bottom: 40px;
 
-.label{
-    font-size:12px;
-    text-transform:uppercase;
-}
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
 
-.content{
-    max-width:700px;
-}
+        /* HERO */
 
-.content p{
-    margin-bottom:10px;
-}
+        .hero {
+            margin-bottom: 50px;
+        }
 
-/* LINKS */
+        .hero h1 {
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: normal;
+            line-height: 0.88;
+            letter-spacing: -4px;
+        }
 
-.links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:30px;
-    margin-top:10px;
-}
+        /* SECTIONS */
 
-.links a{
-    color:#000;
-    text-decoration:none;
-}
+        .section {
+            border-top: 1px solid #000;
 
-.links a:hover{
-    text-decoration:underline;
-}
+            padding: 20px 0;
 
-/* FOOTER */
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+        }
 
-footer{
-    border-top:1px solid #000;
-    margin-top:auto;
-    padding-top:20px;
-    display:flex;
-    justify-content:space-between;
-}
+        .label {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
 
-/* MOBILE */
+        .content {
+            max-width: 700px;
+        }
 
-@media(max-width:768px){
+        .content p {
+            margin-bottom: 10px;
+        }
 
-    .container{
-        padding:20px;
-    }
+        /* LINKS */
 
-    .hero{
-        margin-bottom:30px;
-    }
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 10px;
+        }
 
-    .hero h1{
-        font-size:clamp(3rem,15vw,5rem);
-    }
+        .links a {
+            color: #000;
+            text-decoration: none;
+        }
 
-    .section{
-        grid-template-columns:1fr;
-        gap:15px;
-        padding:15px 0;
-    }
+        .links a:hover {
+            text-decoration: underline;
+        }
 
-    footer{
-        flex-direction:column;
-        gap:10px;
-    }
+        /* FOOTER */
 
-}
+        footer {
+            border-top: 1px solid #000;
 
-</style>
+            margin-top: auto;
+            padding-top: 20px;
+
+            display: flex;
+            justify-content: space-between;
+
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+
+            .container {
+                padding: 20px;
+            }
+
+            .hero {
+                margin-bottom: 30px;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 15vw, 5rem);
+            }
+
+            .section {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 15px 0;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-<header>
-    <div>Spirit & Sound</div>
-    <div>South Africa</div>
-</header>
+        <header>
+            <div>Spirit & Sound</div>
+            <div>South Africa</div>
+        </header>
 
-<div class="hero">
-    <h1>
-        Spirit<br>
-        & Sound
-    </h1>
-</div>
-<div class="section">
-
-    <div class="label">Explore</div>
-
-    <div class="content">
-
-        <div class="links">
-            <a href="learnmore.html">About</a>
-            <a href="playlists.html">Playlists</a>
-            <a href="howwedothings.html">How We Do Things</a>
-            <a href="sets.html"></a>
+        <div class="hero">
+            <h1>
+                Spirit<br>
+                & Sound
+            </h1>
         </div>
 
+        <!-- EXPLORE -->
+
+        <div class="section">
+
+            <div class="label">
+                Explore
+            </div>
+
+            <div class="content">
+
+                <div class="links">
+                    <a href="learnmore.html">About</a>
+                    <a href="howwedothings.html">How We Do Things</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ABOUT -->
+
+        <div class="section">
+
+            <div class="label">
+                Written By ZEN
+            </div>
+
+            <div class="content">
+
+                <p>
+                    Spirit & Sound began in 2025 with its first private set.
+                    The event was well received and helped shape the direction
+                    of the platform.
+                </p>
+
+                <p>
+                    Built around atmospheric, percussion-driven music,
+                    Spirit & Sound creates experiences where people can
+                    properly connect with the music. The platform focuses
+                    on the energy, rhythm, groove and deep basslines that
+                    define many of South Africa's most exciting sounds.
+                </p>
+
+                <p>
+                    Spirit & Sound exists to highlight passionate DJs,
+                    distinctive sounds and the culture behind them,
+                    while showcasing the depth and diversity of South
+                    Africa's music scene.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+
+        <footer>
+            <div>© 2026 Spirit & Sound</div>
+            <div>Independent Platform</div>
+        </footer>
+
     </div>
-
-</div>
-
-<div class="section">
-
-    <div class="label">Written By SENX</div>
-
-    <div class="content">
-        <p>
-Spirit and Sound got started in 2025 with its first private set. This was a success and people really liked it. That first session helped figure out the direction of Spirit and Sound. It was about making music that was atmospheric and had a lot of percussion. The people behind Spirit and Sound wanted to create experiences where people could really listen to the music. They wanted to show what makes the music scenes in South Africa so special. Spirit and Sound is about highlighting DJs who are really passionate, about what they do. These DJs make sets that have a great rhythm and make you want to move. They also have a lot of groove and deep basslines that really drive the music. Spirit and Sound is focused on showcasing the best of South Africas music scenes.
-        </p>
-    </div>
-
-</div>
-
-<footer>
-    <div>© 2026 Spirit & Sound</div>
-    <div>Independent Platform</div>
-</footer>
-
-</div>
 
 </body>
 </html>
