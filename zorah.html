@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZORAH — Independent Electronic Music</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: #f2f2f2;
+    font-family: Inter, Arial, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* NAV */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    z-index: 100;
+    mix-blend-mode: difference;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.nav-links a {
+    opacity: .7;
+    transition: opacity .2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* HERO */
+
+.hero {
+    height: 100vh;
+    min-height: 650px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 32px 42px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255,255,255,.12) 0%,
+        rgba(255,255,255,.03) 35%,
+        transparent 70%
+    );
+    top: 8%;
+    right: 5%;
+    filter: blur(40px);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.hero-small {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    opacity: .45;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(80px, 17vw, 250px);
+    line-height: .78;
+    letter-spacing: -.09em;
+    font-weight: 500;
+}
+
+.hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 45px;
+    max-width: 900px;
+}
+
+.hero-description {
+    max-width: 420px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #aaa;
+}
+
+.hero-index {
+    font-size: 11px;
+    color: #666;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 130px 32px;
+    border-top: 1px solid #1b1b1b;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
+
+.section-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #888;
+}
+
+.section-number {
+    font-size: 11px;
+    color: #444;
+}
+
+/* RELEASES */
+
+.release {
+    display: grid;
+    grid-template-columns: 80px 1fr 180px 120px;
+    align-items: center;
+    padding: 22px 0;
+    border-top: 1px solid #181818;
+    transition: padding .3s ease;
+}
+
+.release:last-child {
+    border-bottom: 1px solid #181818;
+}
+
+.release:hover {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.release-number {
+    color: #555;
+    font-size: 11px;
+}
+
+.release-name {
+    font-size: clamp(22px, 3vw, 38px);
+    letter-spacing: -.05em;
+}
+
+.release-artist {
+    color: #888;
+    font-size: 12px;
+}
+
+.release-date {
+    color: #666;
+    font-size: 11px;
+    text-align: right;
+}
+
+/* FEATURED */
+
+.featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+}
+
+.featured-image {
+    background:
+        radial-gradient(circle at 30% 40%, #555, transparent 25%),
+        radial-gradient(circle at 70% 60%, #222, transparent 35%),
+        #111;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-image::after {
+    content: "ZORAH 001";
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    font-size: 11px;
+    letter-spacing: .12em;
+    color: #aaa;
+}
+
+.featured-info {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid #1b1b1b;
+}
+
+.featured-info h2 {
+    font-size: clamp(50px, 7vw, 100px);
+    line-height: .85;
+    letter-spacing: -.08em;
+    font-weight: 500;
+}
+
+.featured-meta {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.8;
+}
+
+.listen {
+    display: inline-block;
+    border: 1px solid #333;
+    padding: 13px 20px;
+    width: fit-content;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    transition: background .2s, color .2s;
+}
+
+.listen:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ARTISTS */
+
+.artist-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #1b1b1b;
+}
+
+.artist {
+    min-height: 390px;
+    background: #050505;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+}
+
+.artist-bg {
+    position: absolute;
+    inset: 0;
+    opacity: .5;
+    transition: transform .6s ease, opacity .6s ease;
+}
+
+.artist:hover .artist-bg {
+    transform: scale(1.06);
+    opacity: .75;
+}
+
+.artist:nth-child(1) .artist-bg {
+    background: radial-gradient(circle at 45% 40%, #555, #111 45%, #050505 75%);
+}
+
+.artist:nth-child(2) .artist-bg {
+    background: radial-gradient(circle at 65% 30%, #444, #101010 45%, #050505 75%);
+}
+
+.artist:nth-child(3) .artist-bg {
+    background: radial-gradient(circle at 35% 60%, #666, #111 45%, #050505 75%);
+}
+
+.artist-name {
+    position: relative;
+    z-index: 2;
+    font-size: 38px;
+    letter-spacing: -.06em;
+}
+
+.artist-type {
+    position: relative;
+    z-index: 2;
+    color: #777;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-top: 7px;
+}
+
+/* ABOUT */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+}
+
+.about h2 {
+    font-size: clamp(45px, 7vw, 105px);
+    line-height: .88;
+    letter-spacing: -.08em;
+    font-weight: 500;
+}
+
+.about-text {
+    max-width: 650px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #aaa;
+}
+
+.about-text p + p {
+    margin-top: 30px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 100px 32px 30px;
+    border-top: 1px solid #1b1b1b;
+}
+
+.footer-big {
+    font-size: clamp(80px, 18vw, 270px);
+    letter-spacing: -.1em;
+    line-height: .75;
+    font-weight: 500;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: #666;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 0 18px;
+    }
+
+    .nav-links {
+        gap: 14px;
+        font-size: 9px;
+    }
+
+    .hero {
+        padding: 0 18px 28px;
+    }
+
+    section {
+        padding: 90px 18px;
+    }
+
+    .section-header {
+        margin-bottom: 45px;
+    }
+
+    .release {
+        grid-template-columns: 45px 1fr;
+        gap: 8px;
+        padding: 20px 0;
+    }
+
+    .release-artist {
+        grid-column: 2;
+    }
+
+    .release-date {
+        display: none;
+    }
+
+    .featured {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-image {
+        min-height: 420px;
+    }
+
+    .featured-info {
+        padding: 35px 20px;
+        min-height: 430px;
+        border-left: none;
+        border-top: 1px solid #1b1b1b;
+    }
+
+    .artist-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .artist {
+        min-height: 300px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .about-text {
+        font-size: 17px;
+    }
+
+    .footer-bottom {
+        margin-top: 70px;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#" class="logo">ZORAH</a>
+
+    <div class="nav-links">
+        <a href="#releases">Releases</a>
+        <a href="#artists">Artists</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+        <div class="hero-content">
+
+            <div class="hero-small">
+                Independent Electronic Music Label
+            </div>
+
+            <h1>ZORAH</h1>
+
+            <div class="hero-bottom">
+
+                <p class="hero-description">
+                    A Johannesburg-based independent record label focused on
+                    atmospheric, percussive and forward-thinking electronic music.
+                </p>
+
+                <span class="hero-index">
+                    EST. 2026 / JOHANNESBURG
+                </span>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- LATEST RELEASE -->
+
+    <section>
+
+        <div class="section-header">
+            <div class="section-title">Latest Release</div>
+            <div class="section-number">001</div>
+        </div>
+
+        <div class="featured">
+
+            <div class="featured-image"></div>
+
+            <div class="featured-info">
+
+                <div>
+                    <div class="section-title">ZORAH 001</div>
+
+                    <h2>
+                        FIRST<br>
+                        LIGHT
+                    </h2>
+                </div>
+
+                <div class="featured-meta">
+                    ARTIST — ZEN<br>
+                    FORMAT — EP<br>
+                    RELEASE — 2027
+                </div>
+
+                <a href="#" class="listen">
+                    Listen
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RELEASES -->
+
+    <section id="releases">
+
+        <div class="section-header">
+            <div class="section-title">Catalogue</div>
+            <div class="section-number">Selected Releases</div>
+        </div>
+
+        <div class="release">
+            <div class="release-number">001</div>
+            <div class="release-name">First Light</div>
+            <div class="release-artist">ZEN</div>
+            <div class="release-date">2027</div>
+        </div>
+
+        <div class="release">
+            <div class="release-number">002</div>
+            <div class="release-name">Untitled</div>
+            <div class="release-artist">TBA</div>
+            <div class="release-date">2027</div>
+        </div>
+
+        <div class="release">
+            <div class="release-number">003</div>
+            <div class="release-name">Untitled</div>
+            <div class="release-artist">TBA</div>
+            <div class="release-date">2027</div>
+        </div>
+
+    </section>
+
+
+    <!-- ARTISTS -->
+
+    <section id="artists">
+
+        <div class="section-header">
+            <div class="section-title">Artists</div>
+            <div class="section-number">ZORAH Roster</div>
+        </div>
+
+        <div class="artist-grid">
+
+            <a href="#" class="artist">
+                <div class="artist-bg"></div>
+                <div class="artist-name">ZEN</div>
+                <div class="artist-type">Johannesburg / South Africa</div>
+            </a>
+
+            <a href="#" class="artist">
+                <div class="artist-bg"></div>
+                <div class="artist-name">M3SS4ROUND</div>
+                <div class="artist-type">Electronic / Experimental</div>
+            </a>
+
+            <a href="#" class="artist">
+                <div class="artist-bg"></div>
+                <div class="artist-name">ZORAH</div>
+                <div class="artist-type">Various Artists</div>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="about">
+
+            <div>
+                <div class="section-title">About ZORAH</div>
+            </div>
+
+            <div class="about-text">
+
+                <p>
+                    ZORAH is an independent electronic music label built around
+                    artists with a distinct voice, a strong sense of rhythm and
+                    music that exists beyond simple genre definitions.
+                </p>
+
+                <p>
+                    Based in Johannesburg, the label operates at the intersection
+                    of African electronic music and the wider global underground.
+                </p>
+
+                <p>
+                    We release music we believe deserves to be heard.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer id="contact">
+
+    <div class="footer-big">
+        ZORAH
+    </div>
+
+    <div class="footer-bottom">
+
+        <div>
+            © 2026 ZORAH
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Instagram</a>
+            <a href="#">SoundCloud</a>
+            <a href="#">Spotify</a>
+            <a href="mailto:hello@zorah.co.za">Email</a>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>z
