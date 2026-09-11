@@ -1,361 +1,449 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FORM — Graphic Design Studio</title>
+    <title>FORM — Graphic Design Studio</title>
 
-<style>
-* {
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    background: #f3efe7;
-    color: #151515;
-    font-family: Arial, Helvetica, sans-serif;
-}
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f3efe7;
+            color: #151515;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-body {
-    overflow-x: hidden;
-    min-height: 100vh;
-}
+        body {
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-a:hover {
-    color: #ef4b2f;
-}
+        a:hover {
+            color: #ef4b2f;
+        }
 
-/* PAGE */
+        /* PAGE */
 
-.page {
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 24px 3vw 28px;
-}
+        .page {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px 3vw 28px;
+            transition: filter 0.2s ease;
+        }
 
-/* CENTRED NAVIGATION-ONLY PAGE */
+        /* HIDDEN ELEMENTS */
 
-.top,
-.content,
-.footer {
-    display: none;
-}
+        .top,
+        .content,
+        .footer {
+            display: none;
+        }
 
-/* TOP */
+        /* TOP */
 
-.top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 30px;
-    margin-bottom: 125px;
-}
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 125px;
+        }
 
-.artists {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-}
+        .artists {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+        }
 
-.artist {
-    width: 150px;
-    flex-shrink: 0;
-}
+        .artist {
+            width: 150px;
+            flex-shrink: 0;
+        }
 
-.artist img {
-    width: 150px;
-    height: 145px;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(100%) contrast(1.2);
-}
+        .artist img {
+            width: 150px;
+            height: 145px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%) contrast(1.2);
+        }
 
-.artist-name {
-    margin-top: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .08em;
-}
+        .artist-name {
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
 
-/* LOGO */
+        /* LOGO */
 
-.logo {
-    font-size: clamp(58px, 8vw, 128px);
-    font-weight: 900;
-    letter-spacing: -10px;
-    line-height: .72;
-    transform: scaleY(1.05);
-    transform-origin: top right;
-}
+        .logo {
+            font-size: clamp(58px, 8vw, 128px);
+            font-weight: 900;
+            letter-spacing: -10px;
+            line-height: 0.72;
+            transform: scaleY(1.05);
+            transform-origin: top right;
+        }
 
-/* MAIN */
+        /* MAIN */
 
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
 
-.page-gif {
-    display: block;
-    max-width: min(90vw, 500px);
-    height: auto;
-    margin-bottom: 28px;
-}
+        .page-gif {
+            display: block;
+            max-width: min(90vw, 500px);
+            height: auto;
+            margin-bottom: 28px;
+        }
 
-/* TEXT */
+        /* TEXT */
 
-.content {
-    margin-left: 10vw;
-    max-width: 720px;
-}
+        .content {
+            margin-left: 10vw;
+            max-width: 720px;
+        }
 
-.content p {
-    font-size: 18px;
-    line-height: 1.28;
-    margin: 0 0 40px;
-}
+        .content p {
+            font-size: 18px;
+            line-height: 1.28;
+            margin: 0 0 40px;
+        }
 
-/* NAV */
+        /* NAVIGATION */
 
-.navigation {
-    width: max-content;
-    margin: 0 auto;
-    text-align: center;
-    font-size: clamp(32px, 3.2vw, 56px);
-    font-weight: 700;
-    letter-spacing: -2px;
-    line-height: .88;
-    text-transform: uppercase;
-}
+        .navigation {
+            width: max-content;
+            margin: 0 auto;
+            text-align: center;
+            font-size: clamp(32px, 3.2vw, 56px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 0.88;
+            text-transform: uppercase;
+        }
 
-.navigation a {
-    display: block;
-    cursor: pointer;
-}
+        .navigation a {
+            display: block;
+            cursor: pointer;
+            transition: color 0.15s ease;
+        }
 
-/* POPUP */
+        /* BLUR */
 
-.page.is-blurred {
-    filter: blur(8px);
-    transition: filter .2s ease;
-}
+        .page.is-blurred {
+            filter: blur(8px);
+        }
 
-.popup {
-    position: fixed;
-    inset: 0;
-    z-index: 10;
-    display: none;
-    place-items: center;
-    padding: 24px;
-    background: rgb(21 21 21 / 35%);
-}
+        /* POPUP */
 
-.popup.is-open {
-    display: grid;
-}
+        .popup {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            display: none;
+            place-items: center;
+            padding: 24px;
+            background: rgb(21 21 21 / 35%);
+        }
 
-.popup.is-open .popup-window {
-    animation: popup-open .35s ease-out;
-}
+        .popup.is-open {
+            display: grid;
+        }
 
-@keyframes popup-open {
-    0% {
-        opacity: 0;
-        transform: scale(.8) translateY(20px);
-    }
-    70% {
-        transform: scale(1.03) translateY(0);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
+        .popup.is-open .popup-window {
+            animation: popup-open 0.35s ease-out;
+        }
 
-.popup-window {
-    position: relative;
-    width: min(90vw, 620px);
-    min-height: 260px;
-    padding: 48px 32px 32px;
-    background: #f3efe7;
-    color: #151515;
-    box-shadow: 0 15px 50px rgb(0 0 0 / 25%);
-}
+        @keyframes popup-open {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
 
-.popup-window h2 {
-    margin: 0 0 18px;
-    font-size: clamp(36px, 6vw, 72px);
-    line-height: .9;
-    text-transform: uppercase;
-}
+            70% {
+                transform: scale(1.03) translateY(0);
+            }
 
-.popup-window p {
-    max-width: 480px;
-    font-size: 18px;
-    line-height: 1.35;
-}
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
 
-.popup-close {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    cursor: pointer;
-    font-size: 28px;
-    line-height: 1;
-}
+        .popup-window {
+            position: relative;
+            width: min(90vw, 620px);
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 48px 32px 32px;
+            background: #f3efe7;
+            color: #151515;
+            box-shadow: 0 15px 50px rgb(0 0 0 / 25%);
+        }
 
-/* CONTACT */
+        .popup-window h2 {
+            margin: 0 0 18px;
+            font-size: clamp(36px, 6vw, 72px);
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
 
-.contacts {
-    margin-top: 90px;
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    gap: 25px 80px;
-    font-size: 14px;
-}
+        .popup-window p {
+            max-width: 480px;
+            font-size: 18px;
+            line-height: 1.35;
+            white-space: pre-line;
+        }
 
-.contacts span {
-    display: block;
-    margin-bottom: 5px;
-}
+        .popup-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            font-size: 28px;
+            line-height: 1;
+        }
 
-.contacts a {
-    color: #ef4b2f;
-}
+        .popup-close:hover {
+            color: #ef4b2f;
+        }
 
-/* FOOTER */
+        /* CONTACT */
 
-.footer {
-    margin-top: 130px;
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .08em;
-}
+        .contacts {
+            margin-top: 90px;
+            display: grid;
+            grid-template-columns: repeat(2, max-content);
+            gap: 25px 80px;
+            font-size: 14px;
+        }
 
-/* MOBILE */
+        .contacts span {
+            display: block;
+            margin-bottom: 5px;
+        }
 
-@media (max-width: 900px) {
+        .contacts a {
+            color: #ef4b2f;
+        }
 
-    .navigation {
-        text-align: center;
-    }
-}
+        /* FOOTER */
 
-@media (max-width: 550px) {
+        .footer {
+            margin-top: 130px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
 
-    .page {
-        padding: 18px;
-    }
+        /* MOBILE */
 
-    .artist {
-        width: 105px;
-    }
+        @media (max-width: 900px) {
+            .navigation {
+                text-align: center;
+            }
+        }
 
-    .artist img {
-        width: 105px;
-        height: 100px;
-    }
+        @media (max-width: 550px) {
+            .page {
+                padding: 18px;
+            }
 
-    .logo {
-        font-size: 46px;
-        letter-spacing: -6px;
-    }
+            .artist {
+                width: 105px;
+            }
 
-    .content p {
-        font-size: 16px;
-    }
+            .artist img {
+                width: 105px;
+                height: 100px;
+            }
 
-    .navigation {
-        font-size: 40px;
-    }
+            .logo {
+                font-size: 46px;
+                letter-spacing: -6px;
+            }
 
-    .contacts {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+            .content p {
+                font-size: 16px;
+            }
+
+            .navigation {
+                font-size: 40px;
+            }
+
+            .contacts {
+                grid-template-columns: 1fr;
+            }
+
+            .popup {
+                padding: 15px;
+            }
+
+            .popup-window {
+                width: 100%;
+                max-height: 85vh;
+                padding: 42px 24px 28px;
+            }
+
+            .popup-window p {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="page">
+    <div class="page">
 
-    <main class="main">
-        <img class="page-gif" src="3dgifmaker66333.gif" alt="">
+        <main class="main">
 
-        <nav class="navigation">
+            <img
+                class="page-gif"
+                src="3dgifmaker66333.gif"
+                alt=""
+            >
 
-            <a href="#">Work</a>
-            <a href="#">About</a>
+            <nav class="navigation">
+                <a href="#" data-page="Work">Work</a>
+                <a href="#" data-page="About">About</a>
+            </nav>
 
-        </nav>
+        </main>
 
-    </main>
+    </div>
 
-</div>
+    <div
+        class="popup"
+        id="popup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="popup-title"
+    >
 
-<div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-    <section class="popup-window">
-        <button class="popup-close" type="button" aria-label="Close popup">&times;</button>
-        <h2 id="popup-title"></h2>
-        <p id="popup-text"></p>
-    </section>
-</div>
+        <section class="popup-window">
 
-<script>
-    const page = document.querySelector('.page');
-    const popup = document.querySelector('#popup');
-    const popupTitle = document.querySelector('#popup-title');
-    const popupText = document.querySelector('#popup-text');
-    const closeButton = document.querySelector('.popup-close');
+            <button
+                class="popup-close"
+                type="button"
+                aria-label="Close popup"
+            >
+                &times;
+            </button>
 
-    const popupContent = {
-        Work: 'A selection of graphic design work and visual experiments.',
-        About: 'FORM is a graphic design studio focused on clear, expressive visual identities.'
-    };
+            <h2 id="popup-title"></h2>
 
-    function closePopup() {
-        popup.classList.remove('is-open');
-        page.classList.remove('is-blurred');
-        document.body.style.overflow = '';
-    }
+            <p id="popup-text"></p>
 
-    document.querySelectorAll('.navigation a').forEach(link => {
-        link.addEventListener('click', event => {
-            event.preventDefault();
-            popupTitle.textContent = link.textContent;
-            popupText.textContent = popupContent[link.textContent] || '';
-            popup.classList.add('is-open');
-            page.classList.add('is-blurred');
-            document.body.style.overflow = 'hidden';
+        </section>
+
+    </div>
+
+    <script>
+        const page = document.querySelector(".page");
+        const popup = document.querySelector("#popup");
+        const popupTitle = document.querySelector("#popup-title");
+        const popupText = document.querySelector("#popup-text");
+        const closeButton = document.querySelector(".popup-close");
+
+        const popupContent = {
+            Work: `A selection of graphic design work and visual experiments.`,
+
+            About: `The brainchild behind the visual worlds of Spirit & Sound and ZORAH, this space also serves as the creative portfolio of Dan Rodrigues.
+
+It exists at the intersection of music, culture, identity and graphic design, bringing together the visual work created across both platforms while also documenting Dan Rodrigues’ wider creative practice.
+
+Spirit & Sound explores the culture surrounding underground electronic music through events, artists, photography, film and visual storytelling. ZORAH operates as a record label and artist-focused platform, built around releases, sound and a distinct visual identity. While the two have different purposes, they share a common visual language, developed through the work presented here.
+
+The portfolio is where those worlds meet.
+
+It showcases campaign concepts, identities, posters, artwork, digital experiences, photography, motion, typography and experimental graphics created for Spirit & Sound, ZORAH and independent projects. Rather than functioning as a traditional design portfolio, it acts as an archive of ideas, experiments and finished work.
+
+The focus is not simply on making graphics, but on building identities that feel connected to the culture they represent. Every visual is developed with consideration for atmosphere, context, typography, sound, movement and the environments in which the work will exist.
+
+From an event poster to a record sleeve, from an artist identity to a digital campaign, the work is treated as part of a larger system rather than an isolated piece of design.
+
+This is the visual practice behind Spirit & Sound and ZORAH, and the ongoing creative archive of Dan Rodrigues.`
+        };
+
+        function openPopup(title) {
+            popupTitle.textContent = title;
+            popupText.textContent = popupContent[title] || "";
+
+            popup.classList.add("is-open");
+            page.classList.add("is-blurred");
+
+            document.body.style.overflow = "hidden";
+
+            closeButton.focus();
+        }
+
+        function closePopup() {
+            popup.classList.remove("is-open");
+            page.classList.remove("is-blurred");
+
+            document.body.style.overflow = "";
+        }
+
+        document.querySelectorAll(".navigation a").forEach(link => {
+
+            link.addEventListener("click", event => {
+
+                event.preventDefault();
+
+                const title = link.dataset.page;
+
+                openPopup(title);
+
+            });
+
         });
-    });
 
-    closeButton.addEventListener('click', closePopup);
-    popup.addEventListener('click', event => {
-        if (event.target === popup) closePopup();
-    });
-    document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') closePopup();
-    });
-</script>
+        closeButton.addEventListener("click", closePopup);
+
+        popup.addEventListener("click", event => {
+
+            if (event.target === popup) {
+                closePopup();
+            }
+
+        });
+
+        document.addEventListener("keydown", event => {
+
+            if (event.key === "Escape") {
+                closePopup();
+            }
+
+        });
+    </script>
 
 </body>
+
 </html>
