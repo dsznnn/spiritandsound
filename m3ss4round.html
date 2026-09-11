@@ -141,6 +141,81 @@ a:hover {
 
 .navigation a {
     display: block;
+    cursor: pointer;
+}
+
+/* POPUP */
+
+.page.is-blurred {
+    filter: blur(8px);
+    transition: filter .2s ease;
+}
+
+.popup {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: none;
+    place-items: center;
+    padding: 24px;
+    background: rgb(21 21 21 / 35%);
+}
+
+.popup.is-open {
+    display: grid;
+}
+
+.popup.is-open .popup-window {
+    animation: popup-open .35s ease-out;
+}
+
+@keyframes popup-open {
+    0% {
+        opacity: 0;
+        transform: scale(.8) translateY(20px);
+    }
+    70% {
+        transform: scale(1.03) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.popup-window {
+    position: relative;
+    width: min(90vw, 620px);
+    min-height: 260px;
+    padding: 48px 32px 32px;
+    background: #f3efe7;
+    color: #151515;
+    box-shadow: 0 15px 50px rgb(0 0 0 / 25%);
+}
+
+.popup-window h2 {
+    margin: 0 0 18px;
+    font-size: clamp(36px, 6vw, 72px);
+    line-height: .9;
+    text-transform: uppercase;
+}
+
+.popup-window p {
+    max-width: 480px;
+    font-size: 18px;
+    line-height: 1.35;
+}
+
+.popup-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 1;
 }
 
 /* CONTACT */
@@ -223,7 +298,7 @@ a:hover {
 <div class="page">
 
     <main class="main">
-        <img class="page-gif" src="file:///C:/Users/user/Downloads/3dgifmaker66333.gif" alt="">
+        <img class="page-gif" src="3dgifmaker66333.gif" alt="">
 
         <nav class="navigation">
 
@@ -235,6 +310,52 @@ a:hover {
     </main>
 
 </div>
+
+<div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <section class="popup-window">
+        <button class="popup-close" type="button" aria-label="Close popup">&times;</button>
+        <h2 id="popup-title"></h2>
+        <p id="popup-text"></p>
+    </section>
+</div>
+
+<script>
+    const page = document.querySelector('.page');
+    const popup = document.querySelector('#popup');
+    const popupTitle = document.querySelector('#popup-title');
+    const popupText = document.querySelector('#popup-text');
+    const closeButton = document.querySelector('.popup-close');
+
+    const popupContent = {
+        Work: 'A selection of graphic design work and visual experiments.',
+        About: 'FORM is a graphic design studio focused on clear, expressive visual identities.'
+    };
+
+    function closePopup() {
+        popup.classList.remove('is-open');
+        page.classList.remove('is-blurred');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.navigation a').forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            popupTitle.textContent = link.textContent;
+            popupText.textContent = popupContent[link.textContent] || '';
+            popup.classList.add('is-open');
+            page.classList.add('is-blurred');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    closeButton.addEventListener('click', closePopup);
+    popup.addEventListener('click', event => {
+        if (event.target === popup) closePopup();
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closePopup();
+    });
+</script>
 
 </body>
 </html>
