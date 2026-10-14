@@ -1,306 +1,319 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="icon" type="image/png" href="tabicon.png">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101010">
+    <meta name="description" content="Spirit & Sound — Independent music and experiences.">
 
-    <title>Spirit & Sound</title>
+    <link rel="icon" type="image/png" href="tabicon.png">
+
+    <title>Spirit &amp; Sound</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        :root {
+            --white: #f5f4f0;
+            --muted: rgba(245, 244, 240, 0.68);
+            --line: rgba(245, 244, 240, 0.22);
+            --padding: clamp(20px, 4vw, 58px);
+        }
+
+        html {
+            min-height: 100%;
+            background: #111;
+            scroll-behavior: smooth;
         }
 
         body {
-            background: url("https://i.pinimg.com/originals/51/56/c0/5156c00ad68dc82e2b6cc6afa3ac17ad.gif")
-                center center / cover no-repeat fixed;
-
-            color: #fff;
+            min-height: 100vh;
+            color: var(--white);
+            background: #111;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        /* CONTAINER */
+        /* ANIMATED BACKGROUND */
 
-        .container {
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.2) 55%,
+                    rgba(0, 0, 0, 0.55)
+                ),
+                linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.68),
+                    transparent 70%
+                ),
+                url("https://i.pinimg.com/originals/51/56/c0/5156c00ad68dc82e2b6cc6afa3ac17ad.gif")
+                center / cover no-repeat;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--white);
+            outline-offset: 5px;
+        }
+
+        /* PAGE LAYOUT */
+
+        .site-shell {
             position: relative;
             z-index: 1;
 
-            max-width: 1400px;
-            height: 100vh;
+            width: min(100%, 1800px);
+            min-height: 100vh;
+            min-height: 100svh;
 
-            margin: auto;
-            padding: 20px 30px;
+            margin: 0 auto;
+            padding: 0 var(--padding) 28px;
 
-            display: grid;
-
-            grid-template-columns:
-                minmax(0, 1fr)
-                minmax(320px, 1fr);
-
-            grid-template-rows:
-                auto 1fr auto;
-
-            column-gap: 60px;
+            display: flex;
+            flex-direction: column;
         }
 
         /* HEADER */
 
-        header {
-            grid-column: 1 / -1;
-
+        .topbar {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-
-            margin-bottom: 20px;
-
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        /* HERO */
-
-        .hero {
-            grid-column: 1;
-            grid-row: 2;
-
-            align-self: start;
-
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: clamp(4rem, 10vw, 8rem);
-            font-weight: normal;
-
-            line-height: 0.88;
-            letter-spacing: -4px;
-        }
-
-        /* SECTIONS */
-
-        .section {
-            padding: 20px 0;
-
-            display: grid;
-            grid-template-columns: 1fr;
-
             gap: 20px;
+
+            min-height: 76px;
+            border-bottom: 1px solid var(--line);
         }
 
-        /* EXPLORE / TOP RIGHT */
-
-        .explore {
-            grid-column: 2;
-            grid-row: 2;
-
-            align-self: start;
-            justify-self: end;
-
-            width: min(300px, 38vw);
-
-            padding: 0;
-
-            z-index: 2;
-        }
-
-        /* LINKS */
-
-        .links {
-            display: flex;
-            flex-direction: column;
-
-            gap: 14px;
-
-            text-align: right;
+        .wordmark {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            text-decoration: none;
             white-space: nowrap;
         }
 
-        .section-heading {
-            margin: 0 0 2px 0;
+        /* TOP-RIGHT NAVIGATION */
 
-            font-size: 18px;
-            line-height: 1;
+        .topnav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: clamp(12px, 2.5vw, 30px);
+        }
 
-            font-weight: 700;
+        .topnav a {
+            color: var(--muted);
+            font-size: 11px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
 
+        .topnav a:hover {
+            color: var(--white);
+        }
+
+        /* CENTERED LOGO */
+
+        .intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: clamp(340px, 58vh, 680px);
+            padding: 55px 0;
+        }
+
+        .brand-logo {
+            display: block;
+
+            width: min(62vw, 540px);
+            max-height: 54vh;
+            height: auto;
+
+            object-fit: contain;
+            margin: 0 auto;
+        }
+
+        /* ABOUT SECTION */
+
+        .about {
+            display: grid;
+            grid-template-columns: minmax(160px, 0.55fr) minmax(0, 1fr);
+            gap: clamp(28px, 6vw, 90px);
+
+            padding: 28px 0 48px;
+            border-top: 1px solid var(--line);
+        }
+
+        .about-label {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .featured-heading {
-            margin-top: 25px;
+        .about-copy {
+            max-width: 720px;
         }
 
-        .links a {
-            color: #fff;
+        .about-copy p {
+            margin-bottom: 16px;
 
-            font-size: 16px;
-            line-height: 1.1;
-
-            text-decoration: none;
+            color: rgba(245, 244, 240, 0.84);
+            font-size: 13px;
+            line-height: 1.95;
         }
 
-        .links a:hover {
-            text-decoration: underline;
-        }
-
-        /* ABOUT */
-
-        .about {
-            grid-column: 1;
-            grid-row: 3;
-
-            align-self: end;
-
-            max-width: 650px;
-
-            display: grid;
-            gap: 12px;
-        }
-
-        .about .content {
-            max-width: 650px;
-        }
-
-        .content {
-            max-width: 700px;
-        }
-
-        .content p {
-            margin-bottom: 10px;
+        .about-copy p:last-child {
+            margin-bottom: 0;
         }
 
         /* FOOTER */
 
         footer {
-            grid-column: 2;
-            grid-row: 3;
-
-            align-self: end;
-
-            padding-top: 20px;
-
             display: flex;
             justify-content: space-between;
+            gap: 20px;
 
-            font-size: 12px;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 0.5px;
         }
 
-        /* MOBILE */
+        /* TABLETS AND MOBILE */
 
-        @media (max-width: 768px) {
-
-            html,
-            body {
-                overflow: auto;
+        @media (max-width: 760px) {
+            :root {
+                --padding: 22px;
             }
 
-            .container {
-                min-height: 100vh;
-                height: auto;
-
-                padding: 20px;
-
-                display: flex;
-                flex-direction: column;
-
-                gap: 0;
+            .topbar {
+                min-height: 68px;
+                align-items: center;
+                gap: 16px;
             }
 
-            .hero {
-                margin-bottom: 40px;
+            .wordmark {
+                font-size: 10px;
+                letter-spacing: 1.3px;
             }
 
-            .hero h1 {
-                font-size: clamp(3rem, 15vw, 5rem);
+            .topnav {
+                gap: 14px;
             }
 
-            .explore {
-                width: 100%;
-                align-self: auto;
-
-                margin-bottom: 50px;
+            .topnav a {
+                font-size: 10px;
             }
 
-            .links {
-                text-align: left;
+            .intro {
+                min-height: 46vh;
+                padding: 45px 0;
+            }
+
+            .brand-logo {
+                width: min(82vw, 460px);
+                max-height: 42vh;
             }
 
             .about {
-                align-self: auto;
-
-                max-width: 100%;
-
-                margin-bottom: 40px;
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 24px 0 38px;
             }
 
-            .section {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                padding: 15px 0;
+            .about-copy p {
+                font-size: 12px;
             }
 
             footer {
-                align-self: auto;
-
                 flex-direction: column;
-                gap: 10px;
-
-                padding-top: 20px;
+                gap: 7px;
             }
         }
 
+        /* SMALL PHONES */
+
+        @media (max-width: 390px) {
+            :root {
+                --padding: 17px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+
+            .topnav {
+                justify-content: flex-start;
+                gap: 14px;
+            }
+
+            .topnav a {
+                font-size: 10px;
+            }
+
+            .brand-logo {
+                width: min(88vw, 360px);
+            }
+        }
+
+        /* REDUCED MOTION ACCESSIBILITY */
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 
-
 <body>
 
-    <div class="container">
-
+    <div class="site-shell">
 
         <!-- HEADER -->
 
-        <header>
-        </header>
+        <header class="topbar">
 
-
-        <!-- HERO -->
-
-        <div class="hero">
-
-            <h1>
+            <a class="wordmark" href="#" aria-label="Spirit and Sound home">
                 Spirit &amp; Sound
-            </h1>
+            </a>
 
-        </div>
-
-
-        <!-- EXPLORE -->
-
-        <div class="section explore">
-
-            <div class="links">
-
-                <h2 class="section-heading">
-                    US
-                </h2>
+            <nav class="topnav" aria-label="Main navigation">
 
                 <a href="learnmore.html">
                     About
@@ -310,11 +323,6 @@
                     How We Do Things
                 </a>
 
-
-                <h2 class="section-heading featured-heading">
-                    Our Projects
-                </h2>
-
                 <a href="zorah.html">
                     Zorah
                 </a>
@@ -323,42 +331,80 @@
                     M3SS4ROUND
                 </a>
 
-            </div>
+            </nav>
 
-        </div>
+        </header>
 
+        <!-- CENTER LOGO -->
 
-        <!-- ABOUT -->
+        <main>
 
-        <div class="section about">
+            <section class="intro" aria-label="Spirit and Sound logo">
 
-            <div class="content">
+                <img
+                    class="brand-logo"
+                    src="s&amp;s.jpeg"
+                    alt="Spirit &amp; Sound"
+                >
 
-                <p>
-                    Spirit & Sound began in 2025 with its first private set, laying the foundation for an independent platform built around music, atmosphere and intentional experiences.
-                </p>
+            </section>
 
-                <p>
-                    Rooted in atmospheric, percussion-driven sounds, Spirit & Sound explores the relationship between music, energy and connection. Every experience is shaped by rhythm, groove, deep basslines and the details that make a moment feel distinct.
-                </p>
+            <!-- ABOUT US -->
 
-                <p>
-                    At its core, Spirit & Sound is about celebrating the depth of South Africa’s electronic music culture, highlighting passionate DJs and distinctive sounds while creating experiences that leave a lasting impression.
-                </p>
+            <section
+                class="about"
+                id="about"
+                aria-labelledby="about-heading"
+            >
 
-            </div>
+                <h2 class="about-label" id="about-heading">
+                    A little about us
+                </h2>
 
-        </div>
+                <div class="about-copy">
 
+                    <p>
+                        Spirit &amp; Sound began in 2025 with its first
+                        private set, laying the foundation for an
+                        independent platform built around music,
+                        atmosphere and intentional experiences.
+                    </p>
+
+                    <p>
+                        Rooted in atmospheric, percussion-driven sounds,
+                        Spirit &amp; Sound explores the relationship
+                        between music, energy and connection. Every
+                        experience is shaped by rhythm, groove, deep
+                        basslines and the details that make a moment
+                        feel distinct.
+                    </p>
+
+                    <p>
+                        At its core, Spirit &amp; Sound is about
+                        celebrating the depth of South Africa’s
+                        electronic music culture, highlighting
+                        passionate DJs and distinctive sounds while
+                        creating experiences that leave a lasting
+                        impression.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
 
         <!-- FOOTER -->
 
         <footer>
-        </footer>
 
+            <p>South Africa · Independent by nature.</p>
+
+            <p>Spirit &amp; Sound © 2025–2026</p>
+
+        </footer>
 
     </div>
 
 </body>
-
 </html>
