@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio</title>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EDIT THIS BLOCK ONLY — everything you need to change lives here
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+/* ---------- PAGE SETTINGS ---------- */
+const SETTINGS = {
+  // Background portrait. Leave "" to use the blurred placeholder,
+  // or set an image: "photo.jpg"  (or a data: URI, see note below)
+  portrait: "",
+
+  // Page background colour (any CSS colour or gradient)
+  background: "#f2f2f2",
+
+  // Colour of the text under each icon
+  labelColor: "#222",
+
+  // Window width (in the 800-wide layout space). Can be overridden per project.
+  windowWidth: 300,
+};
+
+/* ---------- PROJECTS ----------
+   One block per icon. Copy a block to add a project, delete one to remove it.
+
+   title   Name shown under the icon and in the window title bar
+   x, y    Icon position on an 800 × 600 canvas (x: 0 left → 800 right, y: 0 top → 600 bottom)
+   w, h    Icon size (default 38 × 38)
+   icon    Thumbnail. An image ("images/ryk.jpg") OR a CSS gradient/colour
+   cover   Big image at the top of the window. "" = reuse the icon
+   text    Description. Use \n\n for a new paragraph. Basic HTML works (<b>, <i>, <a href>)
+   images  Extra photos shown in a grid under the text, e.g. ["a.jpg","b.jpg"]
+   credits Small grey line, e.g. "Direction: me · Music: someone"
+   link    A button, e.g. ["Watch on YouTube", "https://..."]  or leave out
+   width   (optional) window width for this project only
+
+   FOLDERS: a folder is just an entry with a `projects:[ ... ]` list instead of text/images.
+   Each project inside uses the same fields as above (title, icon, cover, text, images,
+   credits, link) — it just doesn't need x / y. Folders only need title, x, y.
+   Clicking a folder opens a window of files; clicking a file opens that project.
+*/
+const PROJECTS = [
+  { title:"Ramówka", x:188, y:122, w:34, h:34,
+    icon:"linear-gradient(135deg,#1f3a2a,#7aa86a)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Love song", x:261, y:128,
+    icon:"linear-gradient(#cfd8ff,#26334f)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Stage visuals", x:310, y:158, w:92, h:40,
+    icon:"repeating-radial-gradient(circle at 30% 50%,#111 0 4px,#fff 4px 8px)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"I nie puszczę", x:163, y:187,
+    icon:"linear-gradient(#e24b4b,#1a1313)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Huta", x:228, y:207,
+    icon:"linear-gradient(135deg,#4aa3ff,#1c3dd1)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Szept", x:212, y:243,
+    icon:"linear-gradient(#fff,#e83a3a)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Ryk", x:318, y:241,
+    icon:"linear-gradient(135deg,#3b1d4a,#c0436a)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Pierwszy swag w Polsce", x:375, y:214,
+    icon:"linear-gradient(135deg,#ff9ac8,#6b1f5c)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Efemmera", x:474, y:111,
+    icon:"radial-gradient(circle,#1b1bff 0 25%,#fff 26%)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Kajecik", x:531, y:92,
+    icon:"linear-gradient(135deg,#3a58ff,#1b1f6b)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"WTF", x:491, y:188,
+    icon:"linear-gradient(135deg,#f1d9d0,#201818)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Trasa końca świata", x:441, y:250,
+    icon:"linear-gradient(#59494c,#0f0f12)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Collage animations", x:465, y:290,
+    icon:"linear-gradient(#e56a2c,#7a1d0b)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Interludium", x:629, y:208,
+    icon:"linear-gradient(135deg,#d93a3a,#44181c)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Trasa po końcu świata", x:662, y:225, h:48,
+    icon:"linear-gradient(#3fa4ff,#1a5fb8)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"SBM FF24", x:735, y:273,
+    icon:"linear-gradient(#6fb3c9,#2a5a77)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Solar * Białas", x:580, y:303,
+    icon:"linear-gradient(135deg,#1e4a8f,#9ab8e0)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Chanel", x:654, y:334,
+    icon:"linear-gradient(#f0a060,#6b2a12)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Mafija vinyl", x:350, y:290,
+    icon:"linear-gradient(#bbb,#222)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Wine bottle label", x:325, y:316, h:48,
+    icon:"linear-gradient(135deg,#e8e8e8,#2a2a2a)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"To nie pop", x:245, y:315,
+    icon:"linear-gradient(135deg,#ff5a3c,#2b1a1a)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Wszyscy jesteśmy Kacperczyk", x:147, y:328,
+    icon:"linear-gradient(#999,#1d1d1f)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Kacperczyk 2024", x:196, y:363, h:48,
+    icon:"linear-gradient(135deg,#e9d98a,#222)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Albo albo", x:311, y:364,
+    icon:"linear-gradient(135deg,#ffb0c8,#ff5a9a)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Merch", x:433, y:393,
+    icon:"linear-gradient(135deg,#6a8f6a,#1f2a1f)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"newonce", x:531, y:399, w:76,
+    icon:"linear-gradient(#e0201f 0 30%,#888 30%)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Fantasmagorie", x:376, y:430,
+    icon:"linear-gradient(#e3d8c8,#1a1a1a)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  { title:"Ryk x Sexed", x:465, y:430, h:48,
+    icon:"linear-gradient(135deg,#f5f5f5,#2d3b5a)",
+    cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+
+  /* ───────── FOLDERS ───────── */
+  { title:"Music videos", x:90, y:120,
+    projects:[
+      { title:"Video one",   icon:"linear-gradient(135deg,#ff7a59,#3a1a2a)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+      { title:"Video two",   icon:"linear-gradient(135deg,#59a7ff,#1a2a4a)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+      { title:"Video three", icon:"linear-gradient(135deg,#b6ff59,#1a3a2a)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+    ] },
+
+  { title:"Posters", x:710, y:140,
+    projects:[
+      { title:"Poster one",  icon:"linear-gradient(#f5d142,#7a4a0b)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+      { title:"Poster two",  icon:"linear-gradient(#e86ab5,#3a1a4a)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+    ] },
+
+  { title:"Archive", x:640, y:440,
+    projects:[
+      { title:"Old project one", icon:"linear-gradient(#999,#333)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+      { title:"Old project two", icon:"linear-gradient(#bbb,#444)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+      { title:"Old project three", icon:"linear-gradient(#ccc,#555)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+      { title:"Old project four", icon:"linear-gradient(#ddd,#666)",
+        cover:"", text:"Describe this project here.", images:[], credits:"", link:null },
+    ] },
+];
+</script>
+<!-- ═══════════════ END OF EDITABLE BLOCK ═══════════════ -->
+
+<style>
+:root{--u:calc(min(100vw,133.333vh)/800);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{margin:0;height:100%;background:#eeeeee;overflow:hidden;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.stage{position:absolute;left:50%;top:50%;width:calc(800*var(--u));height:calc(600*var(--u));transform:translate(-50%,-50%)}
+.bg{position:absolute;inset:-30% -30%;background:radial-gradient(ellipse at 50% 40%,#fafafa,#e6e6e8 70%);z-index:0}
+.portrait{position:absolute;inset:-30% -30%;z-index:1;background-size:cover;background-position:center;filter:blur(calc(14*var(--u)))}
+.blur{position:absolute;filter:blur(calc(22*var(--u)));z-index:1}
+.cap{left:30%;top:9%;width:42%;height:22%;border-radius:50% 50% 30% 30%;background:#b9b4d6}
+.brim{left:36%;top:22%;width:26%;height:7%;border-radius:50%;background:#a9a4c9}
+.face{left:33%;top:22%;width:24%;height:40%;border-radius:45%;background:#c79a86}
+.hair{left:52%;top:25%;width:22%;height:30%;border-radius:45%;background:#3b2b26}
+.glass{left:30%;top:31%;width:20%;height:5%;border-radius:8px;background:#151515}
+.body{left:30%;top:68%;width:60%;height:60%;border-radius:45% 45% 0 0;background:#1c1b1b}
+.neck{left:38%;top:58%;width:22%;height:20%;background:#8d6455;border-radius:40%}
+.veil{position:absolute;inset:0;z-index:2;background:linear-gradient(#ffffff55,transparent 30%,transparent 70%,#ffffff33)}
+.item{position:absolute;z-index:3;transform:translate(-50%,-50%);width:calc(var(--w)*var(--u));height:calc(var(--h)*var(--u));text-align:center;cursor:pointer;transition:transform .25s}
+.item:hover,.item:focus-visible{transform:translate(-50%,-50%) scale(1.18);z-index:5;outline:none}
+.item i{display:block;width:100%;height:100%;background:var(--g);box-shadow:0 calc(1*var(--u)) calc(4*var(--u)) #0004;border:calc(1*var(--u)) solid #ffffff55}
+.item span{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:calc(4*var(--u));width:calc(110*var(--u));font-size:calc(8*var(--u));font-weight:700;letter-spacing:.02em;line-height:1.15;text-transform:uppercase;color:var(--label,#222)}
+.win{position:absolute;z-index:10;border-radius:calc(10*var(--u));background:#f6f6f7;box-shadow:0 calc(10*var(--u)) calc(40*var(--u)) #0006,0 0 0 1px #0002;overflow:hidden;animation:pop .18s ease-out}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.bar{display:flex;align-items:center;gap:calc(6*var(--u));padding:calc(8*var(--u)) calc(10*var(--u));background:linear-gradient(#ececee,#dcdcde);cursor:grab;touch-action:none;user-select:none}
+.bar:active{cursor:grabbing}
+.bar button,.bar i{width:calc(10*var(--u));height:calc(10*var(--u));min-width:9px;min-height:9px;padding:0;border:0;border-radius:50%;background:#febc2e}
+.bar button{background:#ff5f57}.bar i+i{background:#28c840}
+.bar b{flex:1;text-align:center;font-size:calc(9*var(--u));font-weight:600;color:#444;margin-right:calc(36*var(--u));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scroll{max-height:calc(440*var(--u));overflow:auto}
+.art{display:block;width:100%;height:calc(180*var(--u));background:var(--g);object-fit:cover}
+.txt{padding:calc(12*var(--u)) calc(14*var(--u)) calc(16*var(--u));color:#222}
+.txt h3{margin:0 0 calc(6*var(--u));font-size:calc(13*var(--u))}
+.txt p{margin:0 0 calc(8*var(--u));font-size:calc(9.5*var(--u));line-height:1.5;color:#444}
+.txt p.cr{color:#888;font-size:calc(8*var(--u))}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:calc(4*var(--u));padding:0 calc(14*var(--u)) calc(6*var(--u))}
+.grid img{width:100%;aspect-ratio:1;object-fit:cover;display:block;border-radius:calc(3*var(--u))}
+.btn{display:inline-block;margin-top:calc(4*var(--u));padding:calc(5*var(--u)) calc(10*var(--u));border-radius:calc(5*var(--u));background:#111;color:#fff!important;font-size:calc(9*var(--u));text-decoration:none}
+.folder i{background:linear-gradient(#8fd0ff,#3d9df2)!important;border:0;border-radius:calc(4*var(--u));position:relative;margin-top:calc(4*var(--u));height:calc(100% - 4*var(--u))}
+.folder i::before{content:"";position:absolute;left:0;top:calc(-4*var(--u));width:45%;height:calc(5*var(--u));background:#6fb8f7;border-radius:calc(3*var(--u)) calc(3*var(--u)) 0 0}
+.files{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(10*var(--u));padding:calc(14*var(--u))}
+.file{all:unset;cursor:pointer;text-align:center;display:block}
+.file i{display:block;aspect-ratio:1;border-radius:calc(4*var(--u));box-shadow:0 calc(1*var(--u)) calc(4*var(--u)) #0004}
+.file span{display:block;margin-top:calc(4*var(--u));font-size:calc(8*var(--u));font-weight:600;color:#333;line-height:1.2}
+.file:focus-visible i{outline:2px solid #3d9df2}
+</style></head>
+<body>
+<div class="stage" id="stage"><div class="bg"></div></div>
+<script>
+const st=document.getElementById('stage');
+
+/* Turns "photo.jpg" into an image background, leaves gradients/colours alone */
+const bg=v=>/^(linear|radial|repeating|conic|#|rgb|hsl)/.test((v||'').trim())?v:`url("${v}") center/cover`;
+const isImg=v=>v&&!/^(linear|radial|repeating|conic|#|rgb|hsl)/.test(v.trim());
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* background */
+if(SETTINGS.portrait){
+  st.insertAdjacentHTML('beforeend',`<div class="portrait" style="background-image:url('${SETTINGS.portrait}')"></div>`);
+}
+st.querySelector('.bg').style.background=SETTINGS.background;
+document.documentElement.style.setProperty('--label',SETTINGS.labelColor);
+
+/* icons */
+PROJECTS.forEach((p,i)=>{
+  const d=document.createElement('div');d.className='item'+(p.projects?' folder':'');d.tabIndex=0;
+  d.style.cssText=`left:${p.x/8}%;top:${p.y/6}%;--w:${p.w||(p.projects?46:38)};--h:${p.h||(p.projects?36:38)};--g:${bg(p.icon)}`;
+  d.innerHTML=`<i></i><span>${esc(p.title)}</span>`;
+  d.onclick=()=>openWin(p);
+  d.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openWin(p)}};
+  st.appendChild(d);
+});
+
+/* windows */
+let z=10,n=0;const wins={};
+const focusWin=w=>w.style.zIndex=++z;
+function openWin(p){
+  if(wins[p.title]){focusWin(wins[p.title]);return}
+  const w=document.createElement('div');w.className='win';
+  const o=(n++%6)*22;
+  w.style.width=`calc(${p.width||SETTINGS.windowWidth}*var(--u))`;
+  w.style.left=(260+o)/8+'%';w.style.top=(90+o)/6+'%';
+  const cover=p.cover||p.icon;
+  const art=isImg(cover)?`<img class="art" src="${esc(cover)}" alt="">`:`<div class="art" style="--g:${esc(cover)}"></div>`;
+  const paras=(p.text||'').split('\n\n').map(t=>`<p>${t}</p>`).join('');
+  const grid=(p.images&&p.images.length)?`<div class="grid">${p.images.map(s=>`<img src="${esc(s)}" alt="">`).join('')}</div>`:'';
+  w.innerHTML=`<div class="bar"><button aria-label="Close"></button><i></i><i></i><b>${esc(p.title)}</b></div>
+  <div class="scroll">${art}<div class="txt"><h3>${esc(p.title)}</h3>${paras}${p.credits?`<p class="cr">${p.credits}</p>`:''}${p.link?`<a class="btn" href="${esc(p.link[1])}" target="_blank" rel="noopener">${esc(p.link[0])}</a>`:''}</div>${grid}</div>`;
+  if(p.projects){
+    w.innerHTML=`<div class="bar"><button aria-label="Close"></button><i></i><i></i><b>${esc(p.title)}</b></div><div class="scroll"><div class="files">${p.projects.map((c,i)=>`<button class="file" data-i="${i}"><i style="background:${bg(c.icon)}"></i><span>${esc(c.title)}</span></button>`).join('')}</div></div>`;
+    w.querySelectorAll('.file').forEach(b=>b.onclick=()=>openWin(p.projects[b.dataset.i]));
+  }
+  st.appendChild(w);wins[p.title]=w;focusWin(w);
+  w.querySelector('button').onclick=()=>{w.remove();delete wins[p.title]};
+  w.addEventListener('pointerdown',()=>focusWin(w));
+  const bar=w.querySelector('.bar');
+  bar.onpointerdown=e=>{
+    if(e.target.tagName==='BUTTON')return;
+    const sx=e.clientX,sy=e.clientY,r=w.getBoundingClientRect(),s=st.getBoundingClientRect();
+    const ox=r.left-s.left,oy=r.top-s.top;bar.setPointerCapture(e.pointerId);
+    bar.onpointermove=m=>{w.style.left=(ox+m.clientX-sx)+'px';w.style.top=(oy+m.clientY-sy)+'px'};
+    bar.onpointerup=()=>{bar.onpointermove=null;bar.onpointerup=null};
+  };
+}
+addEventListener('keydown',e=>{if(e.key==='Escape'){const ws=[...st.querySelectorAll('.win')];if(ws.length)ws.reduce((a,b)=>+a.style.zIndex>+b.style.zIndex?a:b).querySelector('button').click()}});
+</script>
+</body></html>
