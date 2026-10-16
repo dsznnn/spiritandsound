@@ -1,562 +1,268 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Spirit & Sound is an independent platform for music, culture and experiences.">
-<title>About — Spirit & Sound</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | Spirit & Sound</title>
+<meta name="description" content="Spirit & Sound is an independent creative group building brands, culture and experiences in South Africa.">
+<meta property="og:title" content="About | Spirit & Sound">
+<meta property="og:description" content="An independent creative group building brands, culture and experiences.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23000000'/%3E%3Ccircle cx='32' cy='32' r='10' fill='%23ffffff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    --background: #fff;
-    --foreground: #111;
-    --muted: #666;
-    --line: #d5d5d5;
+    --paper: #ffffff;
+    --ink: #000000;
+    --muted: #444444;
+    --line: #d9d9d9;
+    --accent: #3a3fd8;
+    --font: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --pad: clamp(20px, 4vw, 48px);
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 30px;
-}
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 120px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--pad); }
 
-.header-note {
-    color: var(--muted);
-    text-align: right;
-}
-
-.hero {
-    margin-bottom: 110px;
-}
-
-.eyebrow {
-    margin-bottom: 24px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--muted);
-}
-
-.hero h1 {
-    max-width: 1000px;
-    font-size: clamp(3.5rem, 10vw, 8.5rem);
-    font-weight: 400;
-    line-height: .88;
-    letter-spacing: -.075em;
-}
-
-.hero h1 span {
-    display: block;
-    color: #777;
-}
-
-.hero-intro {
-    max-width: 560px;
-    margin-top: 38px;
-    font-size: clamp(16px, 2vw, 20px);
-    line-height: 1.55;
-}
-
-.section-heading {
-    border-top: 1px solid var(--foreground);
-    padding-top: 18px;
-    margin-bottom: 45px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-}
-
-.section-heading span:last-child {
-    color: var(--muted);
-}
-
-.split-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    border-top: 1px solid var(--foreground);
-    padding-top: 35px;
-    gap: 0;
-}
-
-.left-panel {
-    padding-right: 42px;
-}
-
-.right-panel {
-    padding-left: 42px;
-    border-left: 1px solid var(--line);
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-}
-
-.left-section {
-    padding: 26px 0;
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 20px;
-}
-
-.left-section:first-child {
-    padding-top: 0;
-}
-
-.left-section + .left-section {
-    border-top: 1px solid var(--line);
-}
-
-.section-title {
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 1px;
-    color: var(--muted);
-}
-
-.content p {
-    margin-bottom: 16px;
-}
-
-.content p:last-child {
-    margin-bottom: 0;
-}
-
-.venture-list {
-    list-style: none;
-}
-
-.venture-list li {
-    border-bottom: 1px solid var(--line);
-    padding: 16px 0;
-}
-
-.venture-list li:first-child {
-    padding-top: 0;
-}
-
-.venture-list li:last-child {
-    border-bottom: 0;
-    padding-bottom: 0;
-}
-
-.venture-name {
-    display: block;
-    font-size: 19px;
-    letter-spacing: -.4px;
-    margin-bottom: 4px;
-}
-
-.venture-description {
-    display: block;
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-.image-caption {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    color: var(--muted);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .8px;
-}
-
-.bio {
+/* Header */
+.site-header {
+    display: flex; flex-wrap: wrap; justify-content: space-between;
+    align-items: center; gap: 12px 32px;
+    padding-top: 28px; padding-bottom: 28px;
     font-size: 15px;
-    line-height: 1.8;
-    max-width: 480px;
 }
+.brand { font-weight: 700; font-size: 17px; text-decoration: none; letter-spacing: -.01em; }
 
-.principles {
-    margin-top: 110px;
+/* Hero */
+.hero { padding-top: clamp(64px, 12vw, 140px); padding-bottom: clamp(64px, 10vw, 120px); }
+.hero h1 {
+    font-size: clamp(3.2rem, 11vw, 9rem);
+    font-weight: 500;
+    line-height: .9;
+    letter-spacing: -.055em;
+    max-width: 11ch;
 }
+.hero p {
+    margin-top: 36px;
+    max-width: 34ch;
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    line-height: 1.45;
+    color: var(--muted);
+}
+.hero p strong { color: var(--ink); font-weight: 500; }
 
-.principle-grid {
+/* Generic section */
+.block {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--foreground);
-    border-bottom: 1px solid var(--foreground);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 24px clamp(32px, 6vw, 96px);
+    border-top: 1px solid var(--ink);
+    padding: 36px 0 clamp(56px, 8vw, 96px);
 }
+.block > h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.3; }
 
-.principle {
-    padding: 24px 24px 28px 0;
-}
+.prose { max-width: 56ch; }
+.prose p + p { margin-top: 1.1em; }
+.prose h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.prose section + section { margin-top: 2.2em; }
 
-.principle + .principle {
-    border-left: 1px solid var(--line);
-    padding-left: 24px;
-}
-
-.principle-number {
-    display: block;
-    margin-bottom: 36px;
-    color: var(--muted);
-    font-size: 11px;
-}
-
-.principle h3 {
-    font-size: 18px;
-    font-weight: 400;
-    margin-bottom: 10px;
-    letter-spacing: -.3px;
-}
-
-.principle p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-.contact-section {
-    margin-top: 110px;
-    border-top: 1px solid var(--foreground);
-    padding-top: 22px;
+/* Projects */
+.projects { list-style: none; }
+.projects li {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+}
+.projects li:first-child { padding-top: 0; }
+.projects li:last-child { border-bottom: 0; padding-bottom: 0; }
+.projects h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.15; }
+.projects .kind { color: var(--muted); font-size: 15px; align-self: center; text-align: right; }
+.projects p { grid-column: 1 / -1; color: var(--muted); max-width: 52ch; }
+
+/* Principles */
+.principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.principles h3 { font-size: 1.15rem; font-weight: 500; letter-spacing: -.02em; line-height: 1.3; margin-bottom: 8px; }
+.principles p { color: var(--muted); font-size: 16px; }
+
+/* Questions */
+.faq { max-width: 720px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary {
+    list-style: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    padding: 20px 0;
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.3;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+    content: ""; flex: none; width: 10px; height: 10px;
+    border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-2px); transition: transform .2s ease;
+}
+.faq details[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.faq summary:hover { color: var(--accent); }
+.faq .answer { padding: 0 0 24px; max-width: 56ch; color: var(--muted); }
+.faq .answer a { color: var(--ink); font-weight: 500; }
+.faq .answer a:hover { color: var(--accent); }
+
+/* Footer */
+.site-footer {
+    border-top: 1px solid var(--ink);
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px;
+    padding-top: 22px; padding-bottom: 40px;
+    font-size: 15px; color: var(--muted);
 }
 
-.contact-section h2 {
-    font-size: clamp(2rem, 5vw, 4rem);
-    line-height: .95;
-    font-weight: 400;
-    letter-spacing: -.06em;
+@media (max-width: 800px) {
+    .block { grid-template-columns: 1fr; gap: 20px; }
+    .principles { grid-template-columns: 1fr; gap: 28px; }
 }
 
-.contact-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+@media (max-width: 480px) {
+    body { font-size: 16px; }
+    .projects li { grid-template-columns: 1fr; }
+    .projects .kind { text-align: left; align-self: start; }
 }
 
-.contact-details p {
-    color: var(--muted);
-    margin-bottom: 10px;
-}
-
-footer {
-    border-top: 1px solid var(--foreground);
-    margin-top: 100px;
-    padding-top: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .7px;
-}
-
-a {
-    color: var(--foreground);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 22px;
-    }
-
-    header {
-        margin-bottom: 85px;
-    }
-
-    .hero {
-        margin-bottom: 80px;
-    }
-
-    .hero h1 {
-        letter-spacing: -.065em;
-    }
-
-    .split-layout {
-        grid-template-columns: 1fr;
-        gap: 55px;
-    }
-
-    .left-panel,
-    .right-panel {
-        padding: 0;
-        border-left: 0;
-    }
-
-    .left-section {
-        grid-template-columns: 90px 1fr;
-        gap: 16px;
-    }
-
-    .principles,
-    .contact-section {
-        margin-top: 80px;
-    }
-
-    .principle-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .principle {
-        padding: 22px 0;
-    }
-
-    .principle + .principle {
-        border-left: 0;
-        border-top: 1px solid var(--line);
-        padding-left: 0;
-    }
-
-    .principle-number {
-        margin-bottom: 18px;
-    }
-
-    .contact-section {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    footer {
-        margin-top: 75px;
-    }
-}
-
-@media (max-width: 420px) {
-    .header-note {
-        max-width: 130px;
-    }
-
-    .left-section {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .section-heading {
-        font-size: 10px;
-    }
-
-    footer {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .faq summary::after { transition: none; }
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-
-    <header>
-        <a href="index.html" aria-label="Spirit and Sound home">Spirit &amp; Sound</a>
-        <div class="header-note">
-            Music, culture &amp; experiences<br>
-            South Africa
-        </div>
+<div class="wrap">
+    <header class="site-header">
+        <a class="brand" href="index.html" aria-label="Spirit &amp; Sound home">Spirit &amp; Sound</a>
     </header>
 
-    <main>
+    <main id="main">
         <section class="hero" aria-labelledby="page-title">
-            <p class="eyebrow">About Spirit &amp; Sound / 001</p>
-            <h1 id="page-title">Ideas into<br><span>experiences.</span></h1>
-            <p class="hero-intro">
-                Spirit &amp; Sound is an independent platform exploring the
-                connection between music, culture, community and experience.
+            <h1 id="page-title">Ideas into experiences.</h1>
+            <p>
+                <strong>Spirit &amp; Sound</strong> is an independent creative group
+                from South Africa, building brands, culture and experiences.
             </p>
         </section>
 
-        <div class="section-heading">
-            <span>Who we are</span>
-            <span>01 — Overview</span>
-        </div>
-
-        <section class="split-layout" aria-label="About Spirit and Sound">
-            <div class="left-panel">
-
-                <div class="left-section">
-                    <div class="section-title">About</div>
-                    <div class="content">
-                        <p>
-                            Spirit &amp; Sound is built around a simple idea:
-                            music and atmosphere can bring people together and
-                            create experiences that stay with them.
-                        </p>
-                        <p>
-                            Our focus is on sound, events and culture, with an
-                            independent identity shaped by curiosity,
-                            intentional choices and a clear point of view.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="left-section">
-                    <div class="section-title">Approach</div>
-                    <div class="content">
-                        <p>
-                            We believe a strong experience starts with a clear
-                            idea and careful attention to sound, atmosphere and
-                            the people in the room.
-                        </p>
-                        <p>
-                            Every detail should feel intentional and contribute
-                            to a distinct Spirit &amp; Sound identity.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="left-section">
-                    <div class="section-title">Contact</div>
-                    <div class="content">
-                        <p>For general enquiries, get in touch.</p>
-                        <p>
-                            <a href="mailto:hello@spiritandsound.online">
-                                hello@spiritandsound.online
-                            </a>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="right-panel">
-                <div class="image-caption">
-                    <span>Spirit &amp; Sound</span>
-                    <span>South Africa</span>
-                </div>
-
-                <p class="bio">
-                    An independent platform for music, culture and experiences,
-                    shaped by sound, atmosphere and connection.
-                </p>
+        <section class="block" aria-labelledby="about-title">
+            <h2 id="about-title">About</h2>
+            <div class="prose">
+                <section>
+                    <p>
+                        Spirit &amp; Sound is an independent creative group. We
+                        build brands, culture and experiences, starting from a
+                        simple idea: music and atmosphere can bring people
+                        together and create moments that stay with them.
+                    </p>
+                    <p>
+                        Our work spans music, events and community, and each brand
+                        we build has an independent identity shaped by curiosity,
+                        intentional choices and a clear point of view.
+                    </p>
+                </section>
+                <section>
+                    <h3>Our approach</h3>
+                    <p>
+                        A strong experience starts with a clear idea and careful
+                        attention to sound, atmosphere and the people in the room.
+                        Every detail should feel intentional and add to a distinct
+                        Spirit &amp; Sound identity.
+                    </p>
+                </section>
             </div>
         </section>
 
-        <section class="projects" aria-labelledby="projects-title">
-            <div class="section-heading">
-                <span id="projects-title">Projects</span>
-                <span>02 — Selected work</span>
-            </div>
-
-            <ul class="venture-list">
+        <section class="block" id="projects" aria-labelledby="projects-title">
+            <h2 id="projects-title">Brands and projects</h2>
+            <ul class="projects">
                 <li>
-                    <div class="venture-name">Zen And Friends</div>
-                    <p class="venture-description">
-                        A community-focused event project built around music,
-                        connection and shared experiences.
-                    </p>
+                    <h3>Solace</h3>
+                    <span class="kind">Event concept</span>
+                    <p>An event concept centred on atmosphere, sound and connection.</p>
                 </li>
-
                 <li>
-                    <div class="venture-name">ZORA</div>
-                    <p class="venture-description">
-                        An independent record label focused on music and artist
-                        development.
-                    </p>
+                    <h3>Zen And Friends</h3>
+                    <span class="kind">Community events</span>
+                    <p>A community-focused event project built around music, connection and shared experiences.</p>
                 </li>
-
                 <li>
-                    <div class="venture-name">Solace</div>
-                    <p class="venture-description">
-                        An event concept centred on atmosphere, sound and
-                        connection.
-                    </p>
+                    <h3>ZORA</h3>
+                    <span class="kind">Record label</span>
+                    <p>An independent record label focused on music and artist development.</p>
                 </li>
             </ul>
         </section>
 
-        <section class="principles" aria-labelledby="principles-title">
-            <div class="section-heading">
-                <span id="principles-title">What guides us</span>
-                <span>03 — Principles</span>
-            </div>
-
-            <div class="principle-grid">
-                <article class="principle">
-                    <span class="principle-number">01</span>
+        <section class="block" aria-labelledby="principles-title">
+            <h2 id="principles-title">What guides us</h2>
+            <div class="principles">
+                <article>
                     <h3>Distinct identities</h3>
-                    <p>
-                        Spirit &amp; Sound has its own point of view, shaped by
-                        sound, atmosphere and culture.
-                    </p>
+                    <p>Every brand we build has its own point of view, shaped by sound, atmosphere and culture.</p>
                 </article>
-
-                <article class="principle">
-                    <span class="principle-number">02</span>
+                <article>
                     <h3>Intentional experiences</h3>
-                    <p>
-                        Each event and creative decision should contribute to
-                        a considered, memorable experience.
-                    </p>
+                    <p>Each event and creative decision should add to a considered, memorable experience.</p>
                 </article>
-
-                <article class="principle">
-                    <span class="principle-number">03</span>
+                <article>
                     <h3>Rooted in sound</h3>
-                    <p>
-                        Music is at the centre of the atmosphere, identity and
-                        experiences we create.
-                    </p>
+                    <p>Music is at the centre of the atmosphere, identity and experiences we create.</p>
                 </article>
             </div>
         </section>
 
-        <section class="contact-section" aria-labelledby="contact-title">
-            <h2 id="contact-title">Get in<br>touch.</h2>
-
-            <div class="contact-details">
-                <p>
-                    For general enquiries about Spirit &amp; Sound, contact us
-                    by email.
-                </p>
-                <a href="mailto:hello@spiritandsound.online">
-                    hello@spiritandsound.online ↗
-                </a>
+        <section class="block" id="questions" aria-labelledby="questions-title">
+            <h2 id="questions-title">Questions</h2>
+            <div class="faq">
+                <details>
+                    <summary>What is Spirit &amp; Sound?</summary>
+                    <div class="answer"><p>An independent creative group building brands, culture and experiences, with music and atmosphere at the centre.</p></div>
+                </details>
+                <details>
+                    <summary>What do you build?</summary>
+                    <div class="answer"><p>Brands and projects across music, events and community. Right now that includes Solace, Zen And Friends and ZORA.</p></div>
+                </details>
+                <details>
+                    <summary>Where are you based?</summary>
+                    <div class="answer"><p>South Africa.</p></div>
+                </details>
+                <details>
+                    <summary>How can I get in touch?</summary>
+                    <div class="answer"><p>For general enquiries, email <a href="mailto:hello@spiritandsound.online">hello@spiritandsound.online</a>.</p></div>
+                </details>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div>© 2026 Spirit &amp; Sound</div>
-        <a href="index.html">Back home ↗</a>
+    <footer class="site-footer">
+        <span>&copy; 2026 Spirit &amp; Sound</span>
+        <a href="index.html">Back to home</a>
     </footer>
-
 </div>
 </body>
 </html>
