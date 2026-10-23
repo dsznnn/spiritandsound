@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<title>ADE 2026 — Amsterdam Electronic Music Guide</title>
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://tile.openstreetmap.org">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+:root{--bg:#090909;--panel:#111;--panel2:#171717;--line:#2a2a2a;--text:#f3f1ec;--muted:#a5a5a0;--acid:#d9ff56;--orange:#ff704b;--radius:3px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,Arial,Helvetica,sans-serif;letter-spacing:.01em}a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
+.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 4vw;gap:24px;position:sticky;top:0;background:rgba(9,9,9,.94);backdrop-filter:blur(14px);z-index:1000}
+.brand{font-weight:900;letter-spacing:-.08em;font-size:25px;text-decoration:none;white-space:nowrap}.brand span{color:var(--acid)}.nav{display:flex;gap:26px}.nav a{text-decoration:none;color:#c8c8c2;font-size:12px;text-transform:uppercase;letter-spacing:.12em}.nav a:hover{color:var(--acid)}.date-chip{font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid #3a3a3a;padding:9px 11px;color:#d8d8d2;white-space:nowrap}
+.hero{padding:52px 4vw 35px;display:grid;grid-template-columns:1fr minmax(230px,380px);gap:35px;align-items:end;border-bottom:1px solid var(--line)}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:var(--acid);margin:0 0 16px}.hero h1{font-size:clamp(44px,8vw,104px);line-height:.85;letter-spacing:-.09em;margin:0;font-weight:850;max-width:900px}.hero h1 em{font-style:normal;color:var(--acid)}.hero-copy{color:var(--muted);max-width:360px;font-size:13px}.hero-copy strong{color:var(--text);font-weight:600}
+main{padding:0 4vw}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:28px 0 16px}.section-head h2{font-size:22px;letter-spacing:-.05em;margin:0}.section-head p{font-size:11px;color:var(--muted);margin:0}
+.controls{display:grid;grid-template-columns:minmax(220px,1.7fr) repeat(3,minmax(130px,1fr));gap:8px;margin-bottom:12px}.control{width:100%;background:#101010;border:1px solid #303030;color:var(--text);padding:12px 13px;border-radius:var(--radius);outline:none}.control:focus{border-color:var(--acid)}.control::placeholder{color:#777}
+.workspace{display:grid;grid-template-columns:minmax(310px,390px) minmax(0,1fr);height:min(70vh,720px);min-height:540px;border:1px solid var(--line);background:#0e0e0e}.event-list{overflow:auto;border-right:1px solid var(--line);min-height:0}.list-top{position:sticky;top:0;background:#101010;padding:12px 15px;border-bottom:1px solid var(--line);z-index:2;display:flex;justify-content:space-between;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted)}.event-row{display:block;width:100%;text-align:left;padding:16px 15px;background:transparent;color:inherit;border:0;border-bottom:1px solid #222;transition:background .15s;border-left:2px solid transparent}.event-row:hover,.event-row.active{background:#181818;border-left-color:var(--acid)}.row-date{font-size:10px;color:var(--acid);text-transform:uppercase;letter-spacing:.13em}.row-title{font-size:16px;letter-spacing:-.035em;font-weight:700;margin:5px 0 3px}.row-meta{color:#a5a5a0;font-size:11px}.tagline{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}.tag{border:1px solid #343434;color:#c5c5bf;padding:3px 6px;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.status{display:inline-block;font-size:9px;text-transform:uppercase;letter-spacing:.1em;padding:3px 6px;border:1px solid #494949;color:#ddd}.status.live{border-color:var(--acid);color:var(--acid)}.status.upcoming{border-color:#4d827b;color:#8bd4c9}.status.past{color:#888}
+.map-wrap{position:relative;min-width:0;min-height:0;background:#181818}#map{width:100%;height:100%;min-height:540px;background:#202020}.map-note{position:absolute;bottom:12px;left:12px;z-index:500;background:rgba(10,10,10,.88);padding:8px 10px;border:1px solid #383838;color:#b9b9b2;font-size:10px;max-width:260px}.map-actions{position:absolute;top:12px;right:12px;z-index:500;display:flex;gap:6px}.small-btn{border:1px solid #444;background:#101010;color:#f4f4ef;padding:9px 11px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.small-btn:hover{border-color:var(--acid);color:var(--acid)}
+.leaflet-container{font-family:inherit}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#111;color:#f2f2ed;border:1px solid #363636;box-shadow:none;border-radius:2px}.leaflet-popup-content{margin:14px;min-width:190px}.leaflet-popup-content a{color:var(--acid)}.leaflet-control-zoom a{background:#111!important;color:#fff!important;border-color:#333!important}.custom-pin{width:13px;height:13px;border-radius:50%;background:var(--acid);border:2px solid #111;box-shadow:0 0 0 4px rgba(217,255,86,.18)}.custom-pin.selected{background:var(--orange);box-shadow:0 0 0 5px rgba(255,112,75,.22)}
+.content-section{padding:55px 0;border-bottom:1px solid var(--line)}.content-section h2{font-size:30px;letter-spacing:-.06em;margin:0 0 20px}.event-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.mini-card{border:1px solid var(--line);padding:18px;background:#0d0d0d;display:flex;flex-direction:column;gap:8px;min-height:180px}.mini-card h3{font-size:17px;line-height:1.15;letter-spacing:-.04em;margin:0}.mini-card p{font-size:11px;color:var(--muted);margin:0}.mini-card .small-btn{margin-top:auto;align-self:flex-start}.venue-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.venue-card{border:1px solid var(--line);padding:15px;background:#0d0d0d}.venue-card h3{margin:0 0 6px;font-size:14px}.venue-card p{margin:0 0 12px;color:var(--muted);font-size:11px}.venue-card button{background:transparent;border:0;color:var(--acid);padding:0;text-decoration:underline;font-size:11px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px}.about-grid p{color:var(--muted);max-width:620px}.source-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.source-list a{font-size:11px;color:#d7d7d0;text-decoration:none;border-bottom:1px solid #333;padding:8px 0}.source-list a:hover{color:var(--acid)}.footer{padding:22px 4vw;display:flex;justify-content:space-between;gap:20px;color:#777;font-size:10px;text-transform:uppercase;letter-spacing:.1em}.empty{padding:28px 16px;color:var(--muted);font-size:12px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-copy{max-width:580px}.controls{grid-template-columns:1fr 1fr}.controls .search{grid-column:1/-1}.workspace{grid-template-columns:310px minmax(0,1fr)}.event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.venue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{gap:14px}}
+@media(max-width:650px){.topbar{height:auto;min-height:64px;padding:12px 5vw;flex-wrap:wrap;gap:12px}.nav{order:3;width:100%;justify-content:space-between;gap:8px}.nav a{font-size:10px}.date-chip{font-size:9px;padding:7px}.hero{padding:38px 5vw 28px}main{padding:0 5vw}.controls{grid-template-columns:1fr 1fr}.workspace{display:flex;flex-direction:column;height:auto;min-height:0}.map-wrap{order:1;height:48vh;min-height:340px}.event-list{order:2;max-height:390px;border-right:0;border-top:1px solid var(--line)}#map{min-height:340px}.section-head{align-items:start;flex-direction:column}.event-grid,.venue-grid,.about-grid,.source-list{grid-template-columns:1fr}.content-section{padding:38px 0}.footer{padding:20px 5vw;flex-direction:column}.hero h1{font-size:clamp(44px,16vw,78px)}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="ADE 2026 home">ADE<span>/</span>26</a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#map-section">Map</a><a href="#events">Events</a><a href="#venues">Venues</a><a href="#about">About</a>
+  </nav>
+  <div class="date-chip">21—25 OCT 2026 · AMSTERDAM</div>
+</header>
+<section class="hero" id="top">
+  <div><p class="eyebrow">A city-wide electronic music guide</p><h1>FIND YOUR<br><em>FREQUENCY.</em></h1></div>
+  <div class="hero-copy"><p><strong>Five days. One city. Hundreds of rooms.</strong></p><p>A map-led guide to a selection of ADE 2026 events confirmed in the official programme. Explore venues, compare dates and open the original listings for the latest details.</p><p id="today-note">Programme dates: 21–25 October 2026.</p></div>
+</section>
+<main>
+<section id="map-section">
+  <div class="section-head"><h2>Explore the city</h2><p>SELECT AN EVENT TO LOCATE IT</p></div>
+  <div class="controls" aria-label="Event filters">
+    <input class="control search" id="search" type="search" placeholder="Search events, artists or venues…" aria-label="Search events, artists or venues">
+    <select class="control" id="date-filter" aria-label="Filter by date"><option value="">All dates</option><option value="2026-10-21">Wed 21 Oct</option><option value="2026-10-22">Thu 22 Oct</option><option value="2026-10-23">Fri 23 Oct</option><option value="2026-10-24">Sat 24 Oct</option><option value="2026-10-25">Sun 25 Oct</option></select>
+    <select class="control" id="genre-filter" aria-label="Filter by genre"><option value="">All genres</option></select>
+    <select class="control" id="status-filter" aria-label="Filter by event status"><option value="">All statuses</option><option value="upcoming">Upcoming</option><option value="live">In progress</option><option value="past">Finished</option></select>
+  </div>
+  <div class="workspace">
+    <aside class="event-list" aria-label="Matching events">
+      <div class="list-top"><span>Verified event listings</span><span id="count">0 events</span></div>
+      <div id="event-rows"><div class="empty">Loading event listings…</div></div>
+    </aside>
+    <div class="map-wrap">
+      <div id="map" aria-label="Interactive map of ADE event venues"></div>
+      <div class="map-actions"><button class="small-btn" id="reset-map" type="button">Full map</button></div>
+      <div class="map-note" id="map-note">Venue coordinates are resolved from OpenStreetMap when the page loads. An internet connection is required.</div>
+    </div>
+  </div>
+</section>
+<section class="content-section" id="events">
+  <div class="section-head"><h2>Event index</h2><p>OFFICIAL ADE PROGRAMME LISTINGS</p></div>
+  <div class="event-grid" id="event-grid"></div>
+</section>
+<section class="content-section" id="venues">
+  <div class="section-head"><h2>Venues</h2><p>LOCATIONS WITH LISTED ADE EVENTS</p></div>
+  <div class="venue-grid" id="venue-grid"></div>
+</section>
+<section class="content-section" id="about">
+  <div class="about-grid">
+    <div><p class="eyebrow">About this guide</p><h2>Built around the city.</h2><p>This is an independent discovery interface using event details published in the official ADE 2026 programme. It is not an official ADE product. Each event links back to its source listing, where ticketing, changes and further details should be checked.</p><p>The event dataset is embedded in this file and does not update automatically. Venue coordinates are looked up using OpenStreetMap's Nominatim service at runtime; geocoding can fail or return no result. No coordinates have been hard-coded as verified when they could not be independently confirmed during research.</p></div>
+    <div><p class="eyebrow">Research sources</p><div class="source-list" id="sources"></div><p style="font-size:11px;color:#777;margin-top:18px">Coverage is selective, not exhaustive. Event information and lineups may change; the official event page remains the authoritative reference.</p></div>
+  </div>
+</section>
+</main>
+<footer class="footer"><span>ADE/26 · Independent city guide</span><span>Research snapshot · 23 October 2026</span></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+const events = [
+ {id:"nrg-ade",title:"NRG ADE",date:"2026-10-23",start:"14:00",end:"22:00",venue:"Nxt Museum",address:"Asterweg 22, Amsterdam",lineup:["BLK.","Datsko","Jazzy","Jezza & Jod","Kruelty","Prada2000","Saltysis","Toxic Machinery"],genres:["Hard Dance","Techno","Hard Techno"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/nrg-ade/2843948/",organiser:"NRG",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/nrg-ade/2843948/"},
+ {id:"piv-ijland",title:"PIV | IJland",date:"2026-10-23",start:"23:00",end:"06:00",venue:"IJland",address:"Tt. Vasumweg 171, 1033 SG Amsterdam",lineup:["Benny Rodrigues","Bullet Tooth","Caleb Jackson","Dolore","Kepler","Kim April","Klaudie","Midas Field","Prunk","Retrouve"],genres:["House","Big Room House"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/piv-ade-ijland/2835198/",organiser:"PIV",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/piv-ade-ijland/2835198/"},
+ {id:"toman-high-ceilings",title:"Toman pres. High Ceilings",date:"2026-10-23",start:"23:00",end:"06:00",venue:"Camarat",address:"Gedempt Hamerkanaal 4, Amsterdam",lineup:["Alci","Daisy Weweh","Mateo Dufour","Rooléh","Toman"],genres:["House"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/toman-pres-high-ceilings/2886155/",organiser:"High Ceilings / Toman",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/toman-pres-high-ceilings/2886155/"},
+ {id:"thuishaven-friday",title:"Thuishaven Friday Day",date:"2026-10-23",start:"16:00",end:"23:00",venue:"Thuishaven",address:"Contactweg 68, Amsterdam",lineup:["Bella Claxton","Deborah Aime La Bagarre","Diffrent","Emma B","Faster Horses","Lilli & 4 love","Mayv","Mike Momburg","Newtone","Olivia Lensen","Salute","Sophia Violet","Strath"],genres:["House","Progressive","Trance"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/thuishaven-ade-friday/2818483/",organiser:"Thuishaven",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/thuishaven-ade-friday/2818483/"},
+ {id:"zeezout-friday",title:"ZeeZout — Friday",date:"2026-10-23",start:"15:00",end:"23:00",venue:"het Rijk van de Keizer",address:"Joris van den Berghweg 109, Amsterdam",lineup:["CARISTA","Djrum","Eris Drew","Identified Patient","Ineffekt","Jyoty","Laura Meester","Octo Octa","Riria","Sam Alfred","Two Shell","Xceptor"],genres:["Electro","House","Techno"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/zeezout-ade-friday/2816402/",organiser:"ZeeZout",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/zeezout-ade-friday/2816402/"},
+ {id:"dave-clarke-30",title:"Dave Clarke Presents: 30 Years of ADE",date:"2026-10-23",start:"23:00",end:"07:30",venue:"Melkweg",address:"Lijnbaansgracht 234A, Amsterdam",lineup:["Dave Clarke","Daniel Avery","Dasha Rush","DJ Hell","DJ Stingray 313","Egyptian Lover","Luke Slater","Nastia Reigel","Rene Wise","Richard Fearless","Risa Taniguchi","Veronika Vasicka","and more"],genres:["Techno","Electro","Bass & UK"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/dave-clark-presents-30-years-of-ade/2807267/",organiser:"Dave Clarke",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/dave-clark-presents-30-years-of-ade/2807267/"},
+ {id:"welcome-club",title:"Welcome To The Club",date:"2026-10-24",start:"18:00",end:"02:00",venue:"Bar - Restaurant Van de Werf",address:"NDSM-Kade 2, Amsterdam",lineup:["DJ BLACKICON1","DJ Izee","DJ MAX","Georgie Porgie","Isa Carrillo","Soleil Carrillo"],genres:["Deep House","House","Tech-house"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/welcome-to-the-club/2811375/",organiser:"Welcome To The Club",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/welcome-to-the-club/2811375/"},
+ {id:"evoque",title:"EVOQUE x ADE",date:"2026-10-24",start:"15:00",end:"04:00",venue:"Onder Hans",address:"Kerkstraat 136-138, Amsterdam",lineup:["16 Bit Lolitas","Cris-H","Demattei","DJ B.O.B.","Elliot Moriarty","Frankey & Sandrino","Freire","Gino Gentili","Henry Saiz","Iovino","KIKO","Nick Muir","Paul Sparkes"],genres:["House","Deep House","Melodic","Progressive"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/evoque-x-ade/2826762/",organiser:"EVOQUE",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/evoque-x-ade/2826762/"},
+ {id:"wolvenroedel",title:"Wolvenroedel <3 Familiar Music @ WTC",date:"2026-10-24",start:"21:00",end:"05:00",venue:"WTC Amsterdam",address:"Strawinskylaan 1, Amsterdam",lineup:["Bruce Lee","Ed Noodle","natsu","Rex the Dog","YONDI"],genres:["Deep House","House","Afro House","Melodic House"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/wolvenroedel-3-familiar-music-wtc-saturday/2859537/",organiser:"Wolvenroedel / Familiar Music",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/wolvenroedel-3-familiar-music-wtc-saturday/2859537/"},
+ {id:"happy-feelings",title:"HAPPY FEELINGS",date:"2026-10-24",start:"14:00",end:"22:00",venue:"IJland",address:"Tt. Vasumweg 171, 1033 SG Amsterdam",lineup:["Kim Swim","Lucky Done Gone","Mike Momburg","Moody Mehran","SWIM"],genres:["House","Trance"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/happy-feelings-ade/2864836/",organiser:"Happy Feelings",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/happy-feelings-ade/2864836/"},
+ {id:"komm-schon-alter",title:"Komm Schon Alter | Daytime Saturday",date:"2026-10-24",start:"14:00",end:"22:00",venue:"THE OTHER SIDE",address:"Rigakade 10, Amsterdam",lineup:["Einmusik","Henrik Schwarz","Jonathan Kaspar","Miss Melera","Vero"],genres:["Melodic House","Melodic Techno","House"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/komm-schon-alter-daytime-saturday/2843519/",organiser:"Komm Schon Alter",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/komm-schon-alter-daytime-saturday/2843519/"},
+ {id:"electric-friends",title:"Electric Friends Music presents Come together as one",date:"2026-10-24",start:"20:00",end:"02:45",venue:"Café Brandon",address:"Keizersgracht 157, Amsterdam",lineup:["Basement Radio","Boy From Suburbs","DJ Dove","Eric Faria","Leon el Ray","Music man SA","Stefan Thomas"],genres:["House","Afro House","Melodic House"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/come-together-as-one/2829611/",organiser:"Electric Friends Music",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/come-together-as-one/2829611/"},
+ {id:"dgtl-fuse",title:"DGTL FUSE",date:"2026-10-25",start:"14:00",end:"23:00",venue:"NDSM Warehouse",address:"NDSM-Plein 85, Amsterdam",lineup:["Admnti","Dr. Banana","Enzo Siragusa","Isaac Carter","Jamback","L.P. Rhythm","Laidlaw","Luke Dean","Marlie","Max Dean","Mella Dee","Morgan","Moxie","O.BEE","Saoirse","Sonja Moonear","Tomas Station"],genres:["House","Tech-house"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/dgtl-ade-fuse/2807203/",organiser:"DGTL / FUSE",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/dgtl-ade-fuse/2807203/"},
+ {id:"sunday-rave",title:"SUNDAY RAVE",date:"2026-10-25",start:"12:00",end:"16:00",venue:"SAMPLE",address:"Hoekenrode 10A, Amsterdam",lineup:["T-SHA","Sharon Lane","Nellzz","Chayenne Pearl"],genres:["Afrobeats","Afro","Afro Tech","Caribbean"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/sunday-rave/2951489/",organiser:"SUNDAY RAVE",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/sunday-rave/2951489/"},
+ {id:"daydreaming-equinox",title:"Daydreaming & Equinox present Connexion",date:"2026-10-25",start:"21:30",end:"03:00",venue:"Club Baggerbeest",address:"Rudi van Dantzigstraat 1, Amsterdam",lineup:["Duc de Berne","FREEGO","GIU3","Hector Moreno","Ornery","SN/D","TENAJ"],genres:["Afro House","Tech","Progressive House","Melodic Techno"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/daydreaming-equinox-present-connexion/2812350/",organiser:"Daydreaming / Equinox",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/daydreaming-equinox-present-connexion/2812350/"},
+ {id:"last-legendary",title:"Last Legendary | Celebration of a Lifetime",date:"2026-10-25",start:"12:00",end:"22:00",venue:"THE OTHER SIDE",address:"Rigakade 10, Amsterdam",lineup:["Gui Boratto","Guti","Jonny Rock","Melon","Paranoid London","Tristan da Cunha"],genres:["House","Electronic"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/last-legendary-celebration-of-a-lifetime/2938767/",organiser:"Last Legendary",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/last-legendary-celebration-of-a-lifetime/2938767/"},
+ {id:"sunday-closing",title:"ADE Sunday Closing — Club Royal",date:"2026-10-25",start:"21:00",end:"03:00",venue:"Club Royal",address:"Rembrandtplein 44, Amsterdam",lineup:["Tony Junior","Bøll","Dino Derogee","Dion Beentjes","Estasia","Karyo","Nigel Dymez","Ricardo Carota","RUL3","Sara Dol","Shuffle","Sonny Bass"],genres:["House","Techno"],url:"https://www.amsterdam-dance-event.nl/en/program/2026/ade-sunday-closing-the-last-dance-w-tony-junior/2956905/",organiser:"Club Royal",ticketUrl:"https://www.amsterdam-dance-event.nl/en/program/2026/ade-sunday-closing-the-last-dance-w-tony-junior/2956905/"}
+];
+const sourceRefs = [
+ ["ADE 2026 official programme","https://www.amsterdam-dance-event.nl/en/program/filter/?from=2026-10-21&section=events&to=2026-10-25&type=8262%2C8263"],
+ ["NRG ADE","https://www.amsterdam-dance-event.nl/en/program/2026/nrg-ade/2843948/"],
+ ["PIV | IJland","https://www.amsterdam-dance-event.nl/en/program/2026/piv-ade-ijland/2835198/"],
+ ["Toman pres. High Ceilings","https://www.amsterdam-dance-event.nl/en/program/2026/toman-pres-high-ceilings/2886155/"],
+ ["Thuishaven Friday Day","https://www.amsterdam-dance-event.nl/en/program/2026/thuishaven-ade-friday/2818483/"],
+ ["ZeeZout — Friday","https://www.amsterdam-dance-event.nl/en/program/2026/zeezout-ade-friday/2816402/"],
+ ["Welcome To The Club","https://www.amsterdam-dance-event.nl/en/program/2026/welcome-to-the-club/2811375/"],
+ ["EVOQUE x ADE","https://www.amsterdam-dance-event.nl/en/program/2026/evoque-x-ade/2826762/"],
+ ["Wolvenroedel <3 Familiar Music","https://www.amsterdam-dance-event.nl/en/program/2026/wolvenroedel-3-familiar-music-wtc-saturday/2859537/"],
+ ["Komm Schon Alter","https://www.amsterdam-dance-event.nl/en/program/2026/komm-schon-alter-daytime-saturday/2843519/"],
+ ["Electric Friends Music","https://www.amsterdam-dance-event.nl/en/program/2026/come-together-as-one/2829611/"],
+ ["DGTL FUSE","https://www.amsterdam-dance-event.nl/en/program/2026/dgtl-ade-fuse/2807203/"],
+ ["SUNDAY RAVE","https://www.amsterdam-dance-event.nl/en/program/2026/sunday-rave/2951489/"],
+ ["Daydreaming & Equinox","https://www.amsterdam-dance-event.nl/en/program/2026/daydreaming-equinox-present-connexion/2812350/"]
+];
+const byId = Object.fromEntries(events.map(e=>[e.id,e]));
+let map, markers = new Map(), selectedId = null, coordsCache = new Map();
+const el = id => document.getElementById(id);
+function fmtDate(d){return new Date(d+"T12:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"2-digit",month:"short"}).toUpperCase()}
+function minutes(t){const [h,m]=t.split(":").map(Number);return h*60+m}
+function statusOf(e){
+ const now=new Date(), today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+ if(e.date<today)return "past"; if(e.date>today)return "upcoming";
+ const nowM=now.getHours()*60+now.getMinutes(), start=minutes(e.start), end=minutes(e.end);
+ if(end<start){if(nowM>=start||nowM<end)return "live"; return nowM<start?"upcoming":"past"}
+ if(nowM>=start&&nowM<end)return "live"; return nowM<start?"upcoming":"past";
+}
+function statusLabel(s){return s==="live"?"In progress":s==="past"?"Finished":"Upcoming"}
+function activeEvents(){
+ const q=el("search").value.trim().toLowerCase(), date=el("date-filter").value, genre=el("genre-filter").value, status=el("status-filter").value;
+ return events.filter(e=>{
+  const hay=[e.title,e.venue,e.address,e.organiser,...e.lineup,...e.genres].join(" ").toLowerCase();
+  return (!q||hay.includes(q))&&(!date||e.date===date)&&(!genre||e.genres.includes(genre))&&(!status||statusOf(e)===status);
+ }).sort((a,b)=>a.date.localeCompare(b.date)||a.start.localeCompare(b.start));
+}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function eventMarkup(e,compact=false){
+ const s=statusOf(e);
+ return `<div class="row-date">${fmtDate(e.date)} · ${safe(e.start)}–${safe(e.end)} <span class="status ${s}">${statusLabel(s)}</span></div>
+ <div class="row-title">${safe(e.title)}</div><div class="row-meta">${safe(e.venue)} · ${safe(e.address)}</div>
+ <div class="tagline">${e.genres.slice(0,compact?3:4).map(g=>`<span class="tag">${safe(g)}</span>`).join("")}</div>`;
+}
+function selectEvent(id, zoom=true){
+ const e=byId[id]; if(!e)return; selectedId=id;
+ document.querySelectorAll(".event-row").forEach(b=>b.classList.toggle("active",b.dataset.id===id));
+ const marker=markers.get(id);
+ if(marker){marker.setIcon(pinIcon(true));if(zoom)map.flyTo(marker.getLatLng(),15,{duration:.5});marker.openPopup()}
+ markers.forEach((m,key)=>{if(key!==id)m.setIcon(pinIcon(false))});
+ const row=document.querySelector(`.event-row[data-id="${id}"]`); if(row)row.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function pinIcon(selected){return L.divIcon({className:"",html:`<div class="custom-pin ${selected?"selected":""}"></div>`,iconSize:[13,13],iconAnchor:[6,6]})}
+function popupHtml(e){return `<div><div style="color:#d9ff56;font-size:10px;letter-spacing:.12em;text-transform:uppercase">${fmtDate(e.date)} · ${safe(e.start)}–${safe(e.end)}</div><h3 style="font-size:17px;line-height:1.1;margin:7px 0">${safe(e.title)}</h3><div style="color:#aaa;font-size:11px;margin-bottom:10px">${safe(e.venue)}<br>${safe(e.address)}</div><a href="${e.url}" target="_blank" rel="noopener">Official event details ↗</a></div>`}
+async function geocode(e){
+ if(coordsCache.has(e.address))return coordsCache.get(e.address);
+ try{
+  const url="https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q="+encodeURIComponent(e.address+", Amsterdam, Netherlands");
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),8000);
+  const r=await fetch(url,{headers:{"Accept":"application/json"},signal:controller.signal});
+  clearTimeout(timer);
+  if(!r.ok)throw new Error("Geocoding unavailable");
+  const data=await r.json();
+  const point=data.length?[Number(data[0].lat),Number(data[0].lon)]:null;
+  coordsCache.set(e.address,point); return point;
+ }catch(err){coordsCache.set(e.address,null);return null}
+}
+async function loadMarkers(){
+ let good=0, failed=0;
+ // Keep the map usable immediately; venue lookups happen independently.
+ el("map-note").textContent="Map loaded. Locating venues…";
+ const unique=[...new Map(events.map(e=>[e.address,e])).values()];
+ const resolved=await Promise.all(unique.map(async e=>({address:e.address,point:await geocode(e)})));
+ const pointByAddress=new Map(resolved.map(r=>[r.address,r.point]));
+ for(const e of events){
+  const point=pointByAddress.get(e.address);
+  if(point){
+   const marker=L.marker(point,{icon:pinIcon(false),title:e.title,alt:e.title}).addTo(map);
+   marker.bindPopup(popupHtml(e));marker.on("click",()=>{selectedId=e.id;document.querySelectorAll(".event-row").forEach(b=>b.classList.toggle("active",b.dataset.id===e.id));markers.forEach((m,k)=>m.setIcon(pinIcon(k===e.id)));});
+   markers.set(e.id,marker);good++;
+  }else failed++;
+ }
+ if(good){const group=L.featureGroup([...markers.values()]);map.fitBounds(group.getBounds().pad(.12));el("map-note").textContent=`${good} event markers located. ${failed?`${failed} listings need a venue lookup; use their address or official page.`:"All event listings located."}`;}
+ else el("map-note").textContent="The map itself is available, but venue lookup failed. Check your internet connection or try hosting this file on a local web server. You can still open each official event page from the event list.";
+ render();
+}
+function render(){
+ const list=activeEvents();
+ el("count").textContent=`${list.length} event${list.length===1?"":"s"}`;
+ el("event-rows").innerHTML=list.length?list.map(e=>`<button type="button" class="event-row ${selectedId===e.id?"active":""}" data-id="${e.id}" aria-label="Locate ${safe(e.title)}">${eventMarkup(e)}</button>`).join(""):`<div class="empty">No events match these filters. Try a different date, genre or search.</div>`;
+ document.querySelectorAll(".event-row").forEach(b=>b.addEventListener("click",()=>selectEvent(b.dataset.id)));
+ el("event-grid").innerHTML=list.map(e=>`<article class="mini-card"><div class="row-date">${fmtDate(e.date)} · ${safe(e.start)}–${safe(e.end)}</div><h3>${safe(e.title)}</h3><p>${safe(e.venue)} · ${safe(e.address)}</p><p>${safe(e.lineup.join(" · "))}</p><div class="tagline">${e.genres.map(g=>`<span class="tag">${safe(g)}</span>`).join("")}</div><span class="status ${statusOf(e)}">${statusLabel(statusOf(e))}</span><a class="small-btn" href="${e.url}" target="_blank" rel="noopener" style="text-decoration:none">Official details ↗</a></article>`).join("");
+ renderVenues();
+}
+function renderVenues(){
+ const venues=[...new Map(events.map(e=>[e.venue,e])).values()];
+ el("venue-grid").innerHTML=venues.map(v=>{
+  const count=events.filter(e=>e.venue===v.venue).length;
+  return `<article class="venue-card"><h3>${safe(v.venue)}</h3><p>${safe(v.address)}<br>${count} listed event${count===1?"":"s"}</p><button type="button" data-venue="${safe(v.venue)}">Locate venue ↗</button></article>`;
+ }).join("");
+ document.querySelectorAll("[data-venue]").forEach(b=>b.addEventListener("click",()=>{
+  const e=events.find(x=>x.venue===b.dataset.venue);if(e){el("map-section").scrollIntoView({behavior:"smooth"});selectEvent(e.id)}
+ }));
+}
+function init(){
+ if(!window.L){el("map").innerHTML="<div class='empty'>The map library could not load. Check your connection, then reload this page.</div>";return}
+ map=L.map("map",{zoomControl:true,scrollWheelZoom:true}).setView([52.3728,4.8936],12);
+ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
+ const genres=[...new Set(events.flatMap(e=>e.genres))].sort();
+ el("genre-filter").innerHTML='<option value="">All genres</option>'+genres.map(g=>`<option value="${safe(g)}">${safe(g)}</option>`).join("");
+ ["search","date-filter","genre-filter","status-filter"].forEach(id=>el(id).addEventListener(id==="search"?"input":"change",render));
+ el("reset-map").addEventListener("click",()=>{if(markers.size){map.fitBounds(L.featureGroup([...markers.values()]).getBounds().pad(.12))}else map.setView([52.3728,4.8936],12)});
+ el("sources").innerHTML=sourceRefs.map(([label,url])=>`<a href="${url}" target="_blank" rel="noopener">${safe(label)} ↗</a>`).join("");
+ const now=new Date();el("today-note").textContent=`Today: ${now.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}. Status labels use your device's local time.`;
+ render();loadMarkers();
+}
+document.addEventListener("DOMContentLoaded",init);
+</script>
+</body>
+</html>
